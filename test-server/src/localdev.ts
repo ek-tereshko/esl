@@ -11,6 +11,8 @@ import './common/back-button';
 import './common/test-media';
 import './common/test-media-source';
 
+import './playground/playground';
+
 import {
   ESLImage,
   ESLMedia,
