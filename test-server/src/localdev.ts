@@ -32,6 +32,12 @@ import {
   CarouselPlugins
 } from '../../src/modules/beta/all';
 
+import {
+  PlaygroundEditor
+} from './playground/editor/editor';
+
+customElements.define('playground-editor', PlaygroundEditor);
+
 ESLImage.register();
 ESLMedia.register();
 
