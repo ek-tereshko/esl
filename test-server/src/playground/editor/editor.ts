@@ -1,9 +1,9 @@
-import {Ace, edit} from 'ace-builds';
-import {themesByName} from 'ace-builds/src-noconflict/ext-themelist';
-import Editor = Ace.Editor;
+import * as ace from 'brace';
+import 'brace/theme/monokai';
+import 'brace/mode/html';
 
 export class PlaygroundEditor extends HTMLElement {
-  editor: Editor;
+  editor: ace.Editor;
 
   constructor() {
     super();
@@ -11,17 +11,23 @@ export class PlaygroundEditor extends HTMLElement {
 
   protected connectedCallback() {
     this.render();
-    this.editor = edit('editor');
+    this.editor = ace.edit('editor');
     this.setEditorOptions();
-
-    this.classList.add('same');
   }
 
-  private setEditorOptions() {
-    console.log(themesByName.monokai);
+  protected setEditorOptions() {
+    this.editor.setOptions({
+      enableBasicAutocompletion: true,
+      enableSnippets: true,
+      enableLiveAutocompletion: false,
+      theme: 'ace/theme/twilight',
+      mode: 'ace/mode/html',
+      printMarginColumn: -1
+    });
   }
 
   render() {
-    this.innerHTML = '<div id="editor">hello world</div>';
+    this.innerHTML = `<div id="editor" style="
+    height: 250px; width: 700px">hello world</div>`;
   }
 }
