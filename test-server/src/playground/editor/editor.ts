@@ -1,7 +1,7 @@
 import * as ace from 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/html';
-import {debounce} from '../../../../modules/esl-utils/async/debounce';
+import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/core';
 
 export class ESLEditor extends ESLBaseElement {
