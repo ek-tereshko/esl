@@ -1,2 +1,3 @@
-import  './snippets/snippets';
+import './snippets/snippets';
 import './editor/editor';
+import './preview/preview';
