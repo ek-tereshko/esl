@@ -6,19 +6,22 @@ export class Preview extends ESLBaseElement {
 
   @attr() public markup: string;
 
+  private shadow: ShadowRoot;
+
   static get observedAttributes() {
     return ['markup'];
   }
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.innerHTML = this.markup;
+    this.shadow = this.attachShadow({mode: 'closed'});
+    this.shadow.innerHTML = this.markup;
   }
 
   private attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
     if (!this.connected || oldVal === newVal) return;
     if (attrName === 'markup') {
-      this.innerHTML = newVal;
+      this.shadow.innerHTML = newVal;
     }
   }
 }
