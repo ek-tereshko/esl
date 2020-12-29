@@ -1,39 +1,46 @@
 import * as ace from 'brace';
-import 'brace/theme/monokai';
+import 'brace/theme/chrome';
 import 'brace/mode/html';
 import {debounce} from '../../../../modules/esl-utils/async/debounce';
+import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/core';
 
-export class PlaygroundEditor extends HTMLElement {
+export class ESLEditor extends ESLBaseElement {
+  static is = 'esl-editor';
   protected editor: ace.Editor;
 
-  constructor() {
-    super();
+  @attr() public markup: string;
+
+  static get observedAttributes() {
+    return ['markup'];
   }
 
-  set markup(val: string) {
-    this.editor.setValue(val);
+  protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
+    if (!this.connected || oldVal === newVal) return;
+
+    if (attrName === 'markup') {
+      this.editor.setValue(newVal);
+    }
   }
 
-  get markup() {
-    return this.editor.getValue();
-  }
+  protected connectedCallback(): void {
+    super.connectedCallback();
 
-  protected connectedCallback() {
     this.render();
     this.editor = ace.edit('editor');
     this.setEditorOptions();
-    this.editor.on('change', debounce(this.changeCallback.bind(this), 2000));
+    this.editor.on('change', debounce(this.markupChange.bind(this), 2000));
   }
 
-  protected setEditorOptions() {
+  protected setEditorOptions(): void {
     this.editor.setOptions({
-      theme: 'ace/theme/monokai',
+      theme: 'ace/theme/chrome',
       mode: 'ace/mode/html',
       printMarginColumn: -1
     });
   }
 
-  protected changeCallback() {
+  protected markupChange(): void {
+    this.setAttribute('markup', this.editor.getValue());
     this.dispatchEvent(new CustomEvent('codeChange', {
       bubbles: true,
       detail: {markup: this.markup},
@@ -41,8 +48,10 @@ export class PlaygroundEditor extends HTMLElement {
     }));
   }
 
-  render() {
+  render(): void {
     this.innerHTML = `<div id="editor" style="
-    height: 250px; width: 700px">hello world</div>`;
+    height: 250px; width: 700px"></div>`;
   }
 }
+
+ESLEditor.register();
