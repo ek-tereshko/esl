@@ -5,7 +5,8 @@ import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/core';
 
 export class ESLEditor extends ESLBaseElement {
-  static is = 'esl-editor';
+  public static is = 'esl-editor';
+  public static eventNs = 'esl:editor';
   protected editor: ace.Editor;
 
   @attr() public markup: string;
@@ -17,8 +18,8 @@ export class ESLEditor extends ESLBaseElement {
   protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
     if (!this.connected || oldVal === newVal) return;
 
-    if (attrName === 'markup') {
-      this.editor.setValue(newVal);
+    if (attrName === 'markup' && this.editor.getValue() !== newVal) {
+      this.editor.setValue(newVal, -1);
     }
   }
 
@@ -35,17 +36,13 @@ export class ESLEditor extends ESLBaseElement {
     this.editor.setOptions({
       theme: 'ace/theme/chrome',
       mode: 'ace/mode/html',
-      printMarginColumn: -1
+      printMarginColumn: -1,
     });
   }
 
   protected markupChange(): void {
     this.setAttribute('markup', this.editor.getValue());
-    this.dispatchEvent(new CustomEvent('codeChange', {
-      bubbles: true,
-      detail: {markup: this.markup},
-      cancelable: true
-    }));
+    this.$$fireNs('markupChange', {detail: {markup: this.markup}});
   }
 
   render(): void {
