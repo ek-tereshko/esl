@@ -1,5 +1,4 @@
-import {ESLBaseElement} from '../../../../../modules/esl-base-element/core/esl-base-element';
-import {attr} from '../../../../../modules/esl-base-element/decorators/attr';
+import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/core';
 
 export class ESLSnippet extends ESLBaseElement {
   public static is = 'esl-snippet';
