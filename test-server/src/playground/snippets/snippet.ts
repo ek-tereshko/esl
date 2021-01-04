@@ -8,7 +8,7 @@ export class ESLSnippet extends ESLBaseElement {
 
   protected connectedCallback() {
     super.connectedCallback();
-    //this.append(this.name);
+    this.innerHTML += this.name;
   }
 }
 

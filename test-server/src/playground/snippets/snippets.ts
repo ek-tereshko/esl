@@ -28,13 +28,15 @@ export class ESLSnippets extends ESLBaseElement {
 
     if (!this.getActiveSnippet()) {
       this.activeSnippet = document.querySelectorAll('esl-snippet')[0];
-      this.activeSnippet.classList.add('active');
+      this.activeSnippet.classList.add('active-snippet');
+      this.sentMarkUp();
     }
     // this.addEventListener('click', this.onClick);
   }
 
   private getActiveSnippet() {
-    return document.getElementsByClassName('active') || null;
+     if (document.getElementsByClassName('active-snippet').length === 0) return null;
+     else return document.getElementsByClassName('active-snippet');
   }
 }
 
