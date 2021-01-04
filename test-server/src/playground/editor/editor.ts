@@ -26,8 +26,8 @@ export class ESLEditor extends ESLBaseElement {
   protected connectedCallback(): void {
     super.connectedCallback();
 
-    this.render();
-    this.editor = ace.edit('editor');
+    this.style.cssText = 'display: block; height: 250px; width: 700px';
+    this.editor = ace.edit(this);
     this.setEditorOptions();
     this.editor.on('change', debounce(this.markupChange.bind(this), 2000));
   }
@@ -43,11 +43,6 @@ export class ESLEditor extends ESLBaseElement {
   protected markupChange(): void {
     this.setAttribute('markup', this.editor.getValue());
     this.$$fireNs('markupChange', {detail: {markup: this.markup}});
-  }
-
-  render(): void {
-    this.innerHTML = `<div id="editor" style="
-    height: 250px; width: 700px"></div>`;
   }
 }
 
