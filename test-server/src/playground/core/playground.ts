@@ -2,6 +2,7 @@ import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLEditor} from '../editor/editor';
 import {ESLPreview} from '../preview/preview';
+import {ESLSnippets} from '../snippets/snippets';
 
 export class Playground extends ESLBaseElement {
   public static is = 'esl-playground';
@@ -27,7 +28,7 @@ export class Playground extends ESLBaseElement {
 
   private bindEvents() {
     this.addEventListener(`${ESLEditor.eventNs}:markupChange`, this._onEditorMarkupChange);
-    this.addEventListener(`esl:snippets:markupChange`, this._onSnippetChange);
+    this.addEventListener(`${ESLSnippets.eventNs}:snippetChange`, this._onSnippetChange);
     this.addEventListener(`esl:settings:markupChange`, this._onSettingsMarkupChange);
   }
 
@@ -45,6 +46,7 @@ export class Playground extends ESLBaseElement {
 
   @bind
   protected _onSnippetChange(e: CustomEvent) {
+    console.log('snippet change event', e);
     this._state = e.detail.markup;   // some check?
     this.setMarkup(this.preview, this._state);
     this.setMarkup(this.editor, this._state);
@@ -61,7 +63,7 @@ export class Playground extends ESLBaseElement {
 
   private unbindEvents() {
     this.removeEventListener(`${ESLEditor.eventNs}:markupChange`, this._onEditorMarkupChange);
-    this.removeEventListener(`esl:snippets:markupChange`, this._onSnippetChange);
+    this.removeEventListener(`${ESLSnippets.eventNs}:snippetChange`, this._onSnippetChange);
     this.removeEventListener(`esl:settings:markupChange`, this._onSettingsMarkupChange);
   }
 }
