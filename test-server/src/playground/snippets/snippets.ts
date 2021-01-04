@@ -20,7 +20,7 @@ export class ESLSnippets extends ESLBaseElement {
     if (!this.getActiveSnippet()) {
       this.activeSnippet = document.querySelectorAll('esl-snippet')[0];
       this.activeSnippet.classList.add('active-snippet');
-      this.sentMarkUp();
+      setTimeout(() => this.sentMarkUp());
     }
     this.addEventListener('click', this.onClick);
   }
