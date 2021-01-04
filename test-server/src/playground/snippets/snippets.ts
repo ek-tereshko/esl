@@ -11,7 +11,7 @@ export class ESLSnippets extends ESLBaseElement {
     let target = event.target;
     if (target) {
       this.changeActiveSnippet(target);
-      this.sentMarkUp();
+      this.sendMarkUp();
     }
   }
 
@@ -20,14 +20,16 @@ export class ESLSnippets extends ESLBaseElement {
     if (!this.getActiveSnippet()) {
       this.activeSnippet = document.querySelectorAll('esl-snippet')[0];
       this.activeSnippet.classList.add('active-snippet');
-      setTimeout(() => this.sentMarkUp());
+    } else {
+      this.activeSnippet = this.getActiveSnippet();
     }
+    setTimeout(() => this.sendMarkUp());
     this.addEventListener('click', this.onClick);
   }
 
   private getActiveSnippet() {
      if (document.getElementsByClassName('active-snippet').length === 0) return null;
-     else return document.getElementsByClassName('active-snippet');
+     else return document.getElementsByClassName('active-snippet')[0];
   }
 
   private changeActiveSnippet(snippet: EventTarget) {
@@ -36,7 +38,8 @@ export class ESLSnippets extends ESLBaseElement {
     this.activeSnippet.classList.add('active-snippet');
   }
 
-  private sentMarkUp() {
+  private sendMarkUp() {
+    console.log(this.getActiveSnippet());
     let tmpl = this.activeSnippet.getElementsByTagName('template')[0];
     this.$$fireNs('snippetChange', {detail: {markup:  tmpl.innerHTML}});
   }
