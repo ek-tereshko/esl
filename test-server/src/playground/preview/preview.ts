@@ -1,7 +1,7 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 import {attr} from '../../../../src/modules/esl-base-element/decorators/attr';
 
-export class Preview extends ESLBaseElement {
+export class ESLPreview extends ESLBaseElement {
   static is = 'esl-preview';
 
   @attr() public markup: string;
@@ -26,4 +26,4 @@ export class Preview extends ESLBaseElement {
   }
 }
 
-Preview.register();
+ESLPreview.register();
