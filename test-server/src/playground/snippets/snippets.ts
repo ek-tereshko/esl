@@ -39,7 +39,6 @@ export class ESLSnippets extends ESLBaseElement {
   }
 
   private sendMarkUp() {
-    console.log(this.getActiveSnippet());
     let tmpl = this.activeSnippet.getElementsByTagName('template')[0];
     this.$$fireNs('snippetChange', {detail: {markup:  tmpl.innerHTML}});
   }
