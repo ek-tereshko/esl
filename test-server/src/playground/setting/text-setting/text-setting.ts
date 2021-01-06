@@ -8,13 +8,6 @@ export class ESLTextSetting extends ESLSetting {
     this.setStyle();
     this.render('text');
   }
-
-  protected render(inputType: string): void {
-    const input = document.createElement('input');
-    input.type = inputType;
-    input.addEventListener('', this.onValueChange);
-    this.appendChild(input);
-  }
 }
 
 ESLTextSetting.register();
