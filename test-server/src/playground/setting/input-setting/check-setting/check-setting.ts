@@ -3,7 +3,7 @@ import {ESLInputSetting} from '../input-setting';
 
 export class ESLCheckSetting extends ESLInputSetting {
   static is = 'esl-check-setting';
-  @boolAttr() public value = false;
+  @boolAttr() public value: boolean = false;
 
   protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
     if (!this.connected || oldVal === newVal) return;
@@ -14,8 +14,7 @@ export class ESLCheckSetting extends ESLInputSetting {
   }
 
   protected render(): void {
-    this.renderInput();
-    this.input.type = 'checkbox';
+    this.renderInput('checkbox');
 
     this.input.addEventListener('change', (event: Event) => {
       event.preventDefault();

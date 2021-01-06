@@ -14,8 +14,7 @@ export class ESLTextSetting extends ESLInputSetting {
   }
 
   protected render(): void {
-    this.renderInput();
-    this.input.type = 'text';
+    this.renderInput('text');
 
     this.input.addEventListener('change', (event: Event) => {
       event.preventDefault();
