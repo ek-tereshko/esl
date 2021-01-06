@@ -1,8 +1,10 @@
 import {ESLSetting} from '../setting';
+import {attr} from '../../../../../src/modules/esl-base-element/core';
 
 export class ESLTextSetting extends ESLSetting {
-  static is = 'esl-text-setting';
+  public static is = 'esl-text-setting';
   protected input: HTMLInputElement;
+  @attr() public value: string;
 
   protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
     if (!this.connected || oldVal === newVal) return;
@@ -13,15 +15,13 @@ export class ESLTextSetting extends ESLSetting {
   }
 
   protected render(): void {
-    this.addLabel();
-
     this.input = document.createElement('input');
     this.input.type = 'text';
     this.input.id = this.name;
 
     this.input.addEventListener('change', (event: Event) => {
       event.preventDefault();
-      this.setAttribute('value', (event.target as HTMLInputElement).value);
+      this.value = (event.target as HTMLInputElement).value;
       this.onValueChange();
     });
 

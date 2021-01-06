@@ -3,14 +3,15 @@ import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/cor
 export abstract class ESLSetting extends ESLBaseElement {
   static eventNs = 'esl:setting';
 
-  @attr() name: string;
-  @attr() value: string | boolean;
+  @attr() public name: string;
+  public value: string | boolean;
 
   protected abstract render(): void;
 
   protected connectedCallback() {
     super.connectedCallback();
     this.style.display = 'block';
+    this.addLabel();
     this.render();
   }
 
