@@ -5,8 +5,13 @@ export class ESLTextSetting extends ESLSetting {
 
   protected connectedCallback(): void {
     super.connectedCallback();
-    this.setStyle();
-    this.render('text');
+    // this.setStyle();
+    this.render();
+  }
+
+  protected render(): void {
+    this.innerHTML = `<label for="${this.name}-setting">${this.name}</label>
+                      <input  type="text" id="${this.name}-setting">`;
   }
 }
 
