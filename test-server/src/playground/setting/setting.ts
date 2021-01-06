@@ -8,10 +8,10 @@ export abstract class ESLSetting extends ESLBaseElement {
 
   protected abstract render(): void;
 
-  constructor() {
-    super();
-
+  protected connectedCallback() {
+    super.connectedCallback();
     this.style.display = 'block';
+    this.render();
   }
 
   static get observedAttributes(): string[] {
@@ -22,7 +22,11 @@ export abstract class ESLSetting extends ESLBaseElement {
     this.$$fireNs('valueChange', {detail: {name: this.name, value: this.value}});
   }
 
-  protected setStyle(): void {
-    this.style.display = 'block';
+  protected addLabel(): void {
+    const label = document.createElement('label');
+    label.innerText = this.name;
+    label.htmlFor = this.name;
+
+    this.appendChild(label);
   }
 }
