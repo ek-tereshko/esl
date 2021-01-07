@@ -26,7 +26,7 @@ export class ESLEditor extends ESLBaseElement {
   protected connectedCallback(): void {
     super.connectedCallback();
 
-    this.style.cssText = 'display: block; height: 250px; width: 700px';
+    this.style.cssText = 'display: block; height: 300px; width: auto';
     this.editor = ace.edit(this);
     this.setEditorOptions();
     this.editor.on('change', debounce(this.markupChange.bind(this), 2000));

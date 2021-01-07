@@ -1,13 +1,52 @@
 .snippets-list {
   list-style-type:none;
+  margin-top: 2px;
 }
 
 .snippets-list-item {
   &:hover {
     cursor: pointer;
+    opacity: .7;
   }
 }
 
 .active-snippet {
-    font-weight: bold;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.section-name {
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.preview-section {
+  display: grid;
+  align-items: center;
+  height: 500px;
+  max-width: 682.5px;
+  margin-top: 5px;
+  padding: 2%;
+  border: 1px solid #ebebeb;
+  background-color: #fcfcfc;
+  overflow: auto;
+}
+
+.settings-col {
+  padding-left: 0px;
+}
+
+.settings-section {
+  height: 500px;
+  margin-top: 5px;
+  border: 1px solid #ebebeb;
+}
+
+.editor-wrap {
+  margin-top: 20px;
+}
+
+.editor-section {
+  margin-top: 5px;
+  border: 1px solid #ebebeb;
 }
