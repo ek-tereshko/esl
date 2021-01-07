@@ -17,19 +17,23 @@ export class Settings extends ESLBaseElement {
   }
 
   protected connectedCallback() {
-    console.log('settings callback');
     super.connectedCallback();
+    this.bindEvents();
   }
 
   protected bindEvents() {
-    this.addEventListener(`${ESLSetting}:valueChange`, this._onSettingsChanged);
+    this.addEventListener(`${ESLSetting.eventNs}:valueChange`, this._onSettingsChanged);
   }
 
   private _onSettingsChanged(e: any) {
     const elem = new DOMParser().parseFromString(this.markup, 'text/html').body.firstElementChild;
-    const {attrName, attrValue} = e.detail; //check?
-    if (elem && attrName && attrValue) {
-      elem.setAttribute(attrName, attrValue); // TODO coordinate names
+    const {name, value} = e.detail; //check?
+    if (elem) {
+      if (typeof value !== 'boolean') {
+        elem.setAttribute(name, value);
+      } else {
+        value ? elem.setAttribute(name, '') : elem.removeAttribute(name);
+      }
       this.$$fireNs('markupChange', {detail: {markup: elem.outerHTML}});
     }
   }
