@@ -1,5 +1,9 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 import {attr} from '../../../../src/modules/esl-base-element/decorators/attr';
+import {ESLCheckSetting} from '../setting/input-setting/check-setting/check-setting';
+import {ESLListSetting} from '../setting/list-setting/list-setting';
+import {ESLTextSetting} from '../setting/input-setting/text-setting/text-setting';
+import {ESLSetting} from '../setting/setting';
 
 
 export class Settings extends ESLBaseElement {
@@ -18,13 +22,13 @@ export class Settings extends ESLBaseElement {
   }
 
   protected bindEvents() {
-    this.addEventListener('esl:setting:onchange', this._onSettingsChanged); //TODO
+    this.addEventListener(`${ESLSetting}:valueChange`, this._onSettingsChanged);
   }
 
   private _onSettingsChanged(e: any) {
     const elem = new DOMParser().parseFromString(this.markup, 'text/html').body.firstElementChild;
-    const {attrName, attrValue} = e.detail; //check??
-    if (elem) {
+    const {attrName, attrValue} = e.detail; //check?
+    if (elem && attrName && attrValue) {
       elem.setAttribute(attrName, attrValue); // TODO coordinate names
       this.$$fireNs('markupChange', {detail: {markup: elem.outerHTML}});
     }
@@ -43,20 +47,23 @@ export class Settings extends ESLBaseElement {
     }
   }
 
-  //TODO rewrite to actual settings tags
   private get settingsTags(): Element[] {
-    return [...this.getElementsByTagName('esl-setting')];
+    return [
+      ...this.getElementsByTagName(ESLCheckSetting.is),
+      ...this.getElementsByTagName(ESLListSetting.is),
+      ...this.getElementsByTagName(ESLTextSetting.is),
+    ];
   }
 
   //TODO refactor this terrible method
   public parseCode(code: string) {
     const elem = new DOMParser().parseFromString(code, 'text/html').body.firstElementChild;
     if (elem) {
-      for (let settingTag of this.settingsTags) {
+      for (const settingTag of this.settingsTags) {
         const attrName = settingTag.getAttribute('name');
         if (attrName) {
           const attrValue = elem.getAttribute(attrName);
-          settingTag.setAttribute('value', attrValue || '');  //TODO approve attr name
+          settingTag.setAttribute('value', attrValue || '');
           console.log(settingTag);
         }
       }
@@ -64,7 +71,7 @@ export class Settings extends ESLBaseElement {
   }
 
   private unbindEvents() {
-    this.removeEventListener(`esl:setting:markupChange`, this._onSettingsChanged); //TODO
+    this.removeEventListener(`${ESLSetting}:valueChange`, this._onSettingsChanged);
   }
 }
 
