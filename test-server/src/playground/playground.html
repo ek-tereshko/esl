@@ -175,24 +175,6 @@
                                load-cls-declined="hide-video"
                                controls>
                     </esl-media>
-                    <esl-media group="demo-media"
-                               media-type="video"
-                               media-src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4"
-                               load-condition="(min-width: 500px)"
-                               load-cls-target="::parent(section)"
-                               load-cls-accepted="show-video"
-                               load-cls-declined="hide-video"
-                               controls>
-                    </esl-media>
-                    <esl-media group="demo-media"
-                               media-type="video"
-                               media-src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4"
-                               load-condition="(min-width: 500px)"
-                               load-cls-target="::parent(section)"
-                               load-cls-accepted="show-video"
-                               load-cls-declined="hide-video"
-                               controls>
-                    </esl-media>
                   </template>
                 </esl-snippet>
               </li>
@@ -329,7 +311,12 @@
             <div class="col-3 settings-col">
               <span class="section-name">Settings</span>
               <div class="settings-section">
-                <!--                <esl-settings></esl-settings>-->
+                <esl-settings>
+                  <esl-check-setting name="controls"></esl-check-setting>
+                  <esl-check-setting name="muted"></esl-check-setting>
+                  <esl-text-setting name="media-id"></esl-text-setting>
+                  <esl-text-setting name="color" for="esl-trigger"></esl-text-setting>
+                </esl-settings>
               </div>
             </div>
           </div>
