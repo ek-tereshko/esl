@@ -3,6 +3,8 @@ import 'brace/theme/chrome';
 import 'brace/mode/html';
 import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/core';
+import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import stripIndent from 'strip-indent';
 
 export class ESLEditor extends ESLBaseElement {
   public static is = 'esl-editor';
@@ -19,7 +21,7 @@ export class ESLEditor extends ESLBaseElement {
     if (!this.connected || oldVal === newVal) return;
 
     if (attrName === 'markup' && this.editor.getValue() !== newVal) {
-      this.editor.setValue(newVal, -1);
+      this.editor.setValue(stripIndent(newVal).trim(), -1);
     }
   }
 
@@ -29,7 +31,7 @@ export class ESLEditor extends ESLBaseElement {
     this.style.cssText = 'display: block; height: 300px; width: auto';
     this.editor = ace.edit(this);
     this.setEditorOptions();
-    this.editor.on('change', debounce(this.markupChange.bind(this), 2000));
+    this.editor.on('change', debounce(this.markupChange, 2000));
   }
 
   protected setEditorOptions(): void {
@@ -40,8 +42,9 @@ export class ESLEditor extends ESLBaseElement {
     });
   }
 
+  @bind
   protected markupChange(): void {
-    this.setAttribute('markup', this.editor.getValue());
+    this.markup = this.editor.getValue();
     this.$$fireNs('markupChange', {detail: {markup: this.markup}});
   }
 }
