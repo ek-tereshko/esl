@@ -3,6 +3,7 @@ import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLEditor} from '../editor/editor';
 import {ESLPreview} from '../preview/preview';
 import {ESLSnippets} from '../snippets/snippets';
+import {ESLSettings} from '../settings/settings';
 
 export class Playground extends ESLBaseElement {
   public static is = 'esl-playground';
@@ -23,13 +24,13 @@ export class Playground extends ESLBaseElement {
   }
 
   private get settings() {
-    return this.querySelector('settings');
+    return this.querySelector(ESLSettings.is);
   }
 
   private bindEvents() {
     this.addEventListener(`${ESLEditor.eventNs}:markupChange`, this._onEditorMarkupChange);
     this.addEventListener(`${ESLSnippets.eventNs}:snippetChange`, this._onSnippetChange);
-    this.addEventListener(`esl:settings:markupChange`, this._onSettingsMarkupChange);
+    this.addEventListener(`${ESLSettings.eventNs}:markupChange`, this._onSettingsMarkupChange);
   }
 
   @bind
@@ -46,10 +47,10 @@ export class Playground extends ESLBaseElement {
 
   @bind
   protected _onSnippetChange(e: CustomEvent) {
-    console.log('snippet change event', e);
     this._state = e.detail.markup;   // some check?
     this.setMarkup(this.preview, this._state);
     this.setMarkup(this.editor, this._state);
+    this.setMarkup(this.settings, this._state);
   }
 
   private setMarkup(elem: Element | null, markup: string) {
@@ -64,7 +65,7 @@ export class Playground extends ESLBaseElement {
   private unbindEvents() {
     this.removeEventListener(`${ESLEditor.eventNs}:markupChange`, this._onEditorMarkupChange);
     this.removeEventListener(`${ESLSnippets.eventNs}:snippetChange`, this._onSnippetChange);
-    this.removeEventListener(`esl:settings:markupChange`, this._onSettingsMarkupChange);
+    this.removeEventListener(`${ESLSettings.eventNs}:markupChange`, this._onSettingsMarkupChange);
   }
 }
 

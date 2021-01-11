@@ -6,3 +6,4 @@ import './setting/input-setting/text-setting/text-setting';
 import './setting/input-setting/check-setting/check-setting';
 import './setting/list-setting/list-setting';
 import './core/playground';
+import './settings/settings';
