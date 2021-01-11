@@ -2,7 +2,7 @@ import {boolAttr} from '../../../../../../src/modules/esl-base-element/core';
 import {ESLInputSetting} from '../input-setting';
 
 export class ESLCheckSetting extends ESLInputSetting {
-  static is = 'esl-check-setting';
+  public static is = 'esl-check-setting';
   @boolAttr() public value: boolean = false;
 
   protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
