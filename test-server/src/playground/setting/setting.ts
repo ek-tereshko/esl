@@ -21,7 +21,7 @@ export abstract class ESLSetting extends ESLBaseElement {
   }
 
   protected onValueChange(): void {
-    this.$$fireNs('valueChange', {detail: {name: this.name, value: this.value}});
+    this.$$fireNs('valueChange', {detail: {name: this.name, value: this.value, forTag: this.for}});
   }
 
   protected renderLabel(): void {

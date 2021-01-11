@@ -28,13 +28,14 @@ export class ESLSettings extends ESLBaseElement {
 
   private _onSettingsChanged(e: any) {
     console.log('detail', e.detail);
-    const elem = new DOMParser().parseFromString(this.markup, 'text/html').body.firstElementChild;
-    const {name, value} = e.detail; //check?
-    if (elem) {
+    const elem = new DOMParser().parseFromString(this.markup, 'text/html').body;
+    const {name, value, forTag} = e.detail; //check?
+    if (elem.children.length) {
+      const tag = (forTag === '') ? elem.firstElementChild : elem.getElementsByTagName(forTag || '')[0]; //[0]???
       if (typeof value !== 'boolean') {
-        elem.setAttribute(name, value);
+        tag.setAttribute(name, value);
       } else {
-        value ? elem.setAttribute(name, '') : elem.removeAttribute(name);
+        value ? tag.setAttribute(name, '') : tag.removeAttribute(name);
       }
       this.$$fireNs('markupChange', {detail: {markup: elem.outerHTML}});
     }
@@ -53,7 +54,7 @@ export class ESLSettings extends ESLBaseElement {
     }
   }
 
-  private get settingsTags(): Element[] {
+  private get settingsTags(): any[] {
     return [
       ...this.getElementsByTagName(ESLCheckSetting.is),
       ...this.getElementsByTagName(ESLListSetting.is),
@@ -63,12 +64,16 @@ export class ESLSettings extends ESLBaseElement {
 
   //TODO refactor this terrible method
   public parseCode(code: string) {
-    const elem = new DOMParser().parseFromString(code, 'text/html').body.firstElementChild;
-    if (elem) {
-      for (const settingTag of this.settingsTags) {
-        const attrName = settingTag.getAttribute('name');
-        if (attrName) {
-          const attrValue = elem.getAttribute(attrName);
+    const elem = new DOMParser().parseFromString(code, 'text/html').body;
+    console.log(elem);
+    if (elem.children.length) {
+      for (let settingTag of this.settingsTags) {
+        settingTag = settingTag as typeof ESLSetting;
+        const attrName = settingTag.name;
+        const tagName = settingTag.for;
+        const tag = (tagName === '') ? elem.firstElementChild : elem.getElementsByTagName(tagName || '')[0]; //[0]???
+        if (attrName && tag) {
+          const attrValue = tag.getAttribute(attrName);
           settingTag.setAttribute('value', attrValue);
         }
       }
