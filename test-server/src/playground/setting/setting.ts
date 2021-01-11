@@ -3,7 +3,8 @@ import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/cor
 export abstract class ESLSetting extends ESLBaseElement {
   static eventNs = 'esl:setting';
 
-  @attr() public name: string;
+  @attr({readonly: true}) public name: string;
+  @attr({readonly: true}) public for: string;
   public value: string | boolean;
 
   protected abstract render(): void;
