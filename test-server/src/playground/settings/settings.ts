@@ -6,7 +6,7 @@ import {ESLTextSetting} from '../setting/input-setting/text-setting/text-setting
 import {ESLSetting} from '../setting/setting';
 
 
-export class Settings extends ESLBaseElement {
+export class ESLSettings extends ESLBaseElement {
   public static is = 'esl-settings';
   public static eventNs = 'esl:settings';
 
@@ -19,6 +19,7 @@ export class Settings extends ESLBaseElement {
   protected connectedCallback() {
     super.connectedCallback();
     this.bindEvents();
+    this.parseCode(this.markup);
   }
 
   protected bindEvents() {
@@ -26,6 +27,7 @@ export class Settings extends ESLBaseElement {
   }
 
   private _onSettingsChanged(e: any) {
+    console.log('detail', e.detail);
     const elem = new DOMParser().parseFromString(this.markup, 'text/html').body.firstElementChild;
     const {name, value} = e.detail; //check?
     if (elem) {
@@ -67,8 +69,7 @@ export class Settings extends ESLBaseElement {
         const attrName = settingTag.getAttribute('name');
         if (attrName) {
           const attrValue = elem.getAttribute(attrName);
-          settingTag.setAttribute('value', attrValue || '');
-          console.log(settingTag);
+          settingTag.setAttribute('value', attrValue);
         }
       }
     }
@@ -79,4 +80,4 @@ export class Settings extends ESLBaseElement {
   }
 }
 
-Settings.register();
+ESLSettings.register();
