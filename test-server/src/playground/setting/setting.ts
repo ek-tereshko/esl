@@ -11,7 +11,6 @@ export abstract class ESLSetting extends ESLBaseElement {
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.style.display = 'block';
     this.renderLabel();
     this.render();
   }
