@@ -26,7 +26,9 @@ export abstract class ESLSetting extends ESLBaseElement {
 
   protected renderLabel(): void {
     const label = document.createElement('label');
-    label.innerText = this.name;
+    if (this.for) {
+      label.innerHTML = `${this.name} (${this.for})`;
+    } else label.innerText = this.name;
     label.htmlFor = this.name;
 
     this.appendChild(label);

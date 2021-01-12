@@ -1,0 +1,62 @@
+<esl-snippets>
+  <ul class='snippets-list'>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='Image Mode: save-ratio'>
+        <template>
+          <esl-image mode="save-ratio"
+                     data-alt="Alt Text Test"
+                     data-src="img-3-carousel-9-6.jpg"
+                     data-src-base="/images/"></esl-image>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='Image Mode: cover'>
+        <template>
+          <div class="img-container img-container-4-3">
+            <esl-image mode="cover"
+                       data-alt="Alt Text"
+                       data-src="img-5-carousel-9-6.jpg"
+                       data-src-base="/images/"></esl-image>
+          </div>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='Image Mode: cover (additional classes: vertical alignment)'>
+        <template>
+          <div class="img-container m-auto" style="width: 400px; height: 200px; border: 1px solid gray;">
+            <esl-image mode="cover"
+                       data-alt="Alt Text"
+                       data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
+                       data-src-base="/images/"></esl-image>
+          </div>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='Image Mode: cover (additional classes: horizontal alignment)'>
+        <template>
+          <div class="img-container m-auto" style="width: 200px; height: 300px; border: 1px solid gray;">
+            <esl-image mode="cover"
+                       data-alt="Alt Text"
+                       data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
+                       data-src-base="/images/"></esl-image>
+          </div>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='Image Mode: cover (additional classes: inscribe)'>
+        <template>
+          <div class="img-container m-auto" style="width: 300px; height: 150px; border: 1px solid gray;">
+            <esl-image mode="cover" class="bg-inscribe"
+                       data-alt="Alt Text"
+                       data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
+                       data-src-base="/images/"></esl-image>
+          </div>
+        </template>
+      </esl-snippet>
+    </li>
+  </ul>
+</esl-snippets>
