@@ -37,7 +37,7 @@ export class ESLSettings extends ESLBaseElement {
       } else {
         value ? tag.setAttribute(name, '') : tag.removeAttribute(name);
       }
-      this.$$fireNs('markupChange', {detail: {markup: elem.outerHTML}});
+      this.$$fireNs('markupChange', {detail: {markup: elem.innerHTML}});
     }
   }
 
