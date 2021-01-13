@@ -5,6 +5,10 @@ export class ESLTextSetting extends ESLInputSetting {
   public static is = 'esl-text-setting';
   @attr() public value: string;
 
+  protected targetValue(e: Event): string | boolean {
+    return (e.target as HTMLInputElement).value;
+  }
+
   protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
     if (!this.connected || oldVal === newVal) return;
 
@@ -15,12 +19,6 @@ export class ESLTextSetting extends ESLInputSetting {
 
   protected render(): void {
     this.renderInput('text');
-
-    this.input.addEventListener('change', (event: Event) => {
-      event.preventDefault();
-      this.value = (event.target as HTMLInputElement).value;
-      this.onValueChange();
-    });
   }
 }
 

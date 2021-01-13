@@ -8,6 +8,14 @@ export class ESLListSetting extends ESLSetting {
   @attr() public value: string;
   @attr({readonly: true}) public values: string;
 
+  protected get target(): HTMLElement {
+    return this.select;
+  }
+
+  protected targetValue(e: Event): string | boolean {
+    return (e.target as HTMLSelectElement).value;
+  }
+
   protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
     if (!this.connected || oldVal === newVal) return;
 
@@ -21,22 +29,15 @@ export class ESLListSetting extends ESLSetting {
     this.select.id = this.name;
     this.createOptions();
     this.value = this.select.value;
-
-    this.select.addEventListener('change', (event: Event) => {
-      event.preventDefault();
-      this.value = (event.target as HTMLSelectElement).value;
-      this.onValueChange();
-    });
-
-    this.appendChild(this.select);
   }
 
   protected createOptions(): void {
-    if (this.select.length) {
-      this.select.length = 0;
-    }
-
-    this.values.split(',').forEach(value => this.select.add(new Option(value, value)));
+    this.querySelectorAll('esl-list-item').forEach(item => {
+      if (item.textContent) {
+        const value = item.getAttribute('value');
+        this.select.add(new Option(item.textContent, value ? value : item.textContent));
+      }
+    });
   }
 }
 
