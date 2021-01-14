@@ -1,6 +1,11 @@
 <esl-settings>
   <esl-text-setting name="style"></esl-text-setting>
-<!--  select: bg-v-top, bg-v-center, bg-v-top (for Image Mode: cover (additional classes: vertical alignment))-->
-<!--  select: bg-h-left, bg-h-center, bg-h-right (for Image Mode: cover (additional classes: horizontal alignment))-->
-  <esl-text-setting name="class" for="esl-image"></esl-text-setting>
+  <esl-list-setting name="class" for="esl-image">
+    <esl-list-item value="bg-v-top">vertical top alignment</esl-list-item>
+    <esl-list-item value="bg-v-center">vertical center alignment</esl-list-item>
+    <esl-list-item value="bg-v-bottom">vertical bottom alignment</esl-list-item>
+    <esl-list-item value="bg-h-left">horizontal left alignment</esl-list-item>
+    <esl-list-item value="bg-h-center">horizontal center alignment</esl-list-item>
+    <esl-list-item value="bg-h-right">horizontal right alignment</esl-list-item>
+  </esl-list-setting>
 </esl-settings>
