@@ -38,7 +38,10 @@ export class ESLEditor extends ESLBaseElement {
       theme: 'ace/theme/chrome',
       mode: 'ace/mode/html',
       printMarginColumn: -1,
+      wrap: true,
     });
+
+    this.editor.session.setWrapLimitRange(125, 125);
   }
 
   @bind
