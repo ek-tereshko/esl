@@ -1,4 +1,4 @@
-import {ExportNs} from '../enviroment/export-ns';
+import {ExportNs} from '../environment/export-ns';
 import {memoize} from '../decorators/memoize';
 
 export type ScrollType = 'default' | 'negative' | 'reverse';
@@ -31,7 +31,7 @@ export abstract class RTLUtils {
   // Potentially can be useful in future
   // static normalizeScrollLeft(el: HTMLElement, value: number | null = null, isRtl: boolean = RTLUtils.isRtl(el)): number {
   //   value = (value === null) ? el.scrollLeft: value;
-  //   switch (isRtl ? RTLUtils.type : '') {
+  //   switch (isRtl ? RTLUtils.scrollType : '') {
   //     case 'negative':
   //       return el.scrollWidth - el.clientWidth + value;
   //     case 'reverse':
