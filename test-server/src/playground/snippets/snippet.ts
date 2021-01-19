@@ -2,8 +2,6 @@ import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/cor
 
 export class ESLSnippet extends ESLBaseElement {
   public static is = 'esl-snippet';
-  snippetName: string;
-
   @attr() public name: string;
 
   protected connectedCallback() {
