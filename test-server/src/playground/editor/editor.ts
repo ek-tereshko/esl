@@ -2,35 +2,25 @@ import * as ace from 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/html';
 import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
-import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/core';
-import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import stripIndent from 'strip-indent';
+import {Playground} from '../core/playground';
 
 export class ESLEditor extends ESLBaseElement {
   public static is = 'esl-editor';
-  public static eventNs = 'esl:editor';
   protected editor: ace.Editor;
-
-  @attr() public markup: string;
-
-  static get observedAttributes() {
-    return ['markup'];
-  }
-
-  protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
-    if (!this.connected || oldVal === newVal) return;
-
-    if (attrName === 'markup' && this.editor.getValue() !== newVal) {
-      this.editor.setValue(stripIndent(newVal).trim(), -1);
-    }
-  }
+  protected playground: Playground;
 
   protected connectedCallback(): void {
     super.connectedCallback();
 
+    this.playground = (document.querySelector('esl-playground') as Playground);
+    customElements.whenDefined(Playground.is).then(() => this.playground.stateObservable.addListener(this.setMarkup));
+
     this.editor = ace.edit(this);
     this.setEditorOptions();
-    this.editor.on('change', debounce(this.markupChange, 1000));
+    this.editor.on('change', debounce(() => this.$$fire('markupChange',
+      {detail: {markup: this.editor.getValue(), source: ESLEditor.is}}), 1000));
   }
 
   protected setEditorOptions(): void {
@@ -44,10 +34,15 @@ export class ESLEditor extends ESLBaseElement {
     this.editor.session.setWrapLimitRange(125, 125);
   }
 
-  @bind
-  protected markupChange(): void {
-    this.markup = this.editor.getValue();
-    this.$$fireNs('markupChange', {detail: {markup: this.markup}});
+  protected setMarkup(markup: string, source: string): void {
+    if (source !== ESLEditor.is) {
+      this.editor.setValue(stripIndent(markup).trim(), -1);
+    }
+  }
+
+  protected disconnectedCallback() {
+    super.disconnectedCallback();
+    this.playground.stateObservable.removeListener(this.setMarkup);
   }
 }
 

@@ -3,7 +3,6 @@ import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 
 export class ESLSnippets extends ESLBaseElement {
   public static is = 'esl-snippets';
-  public static eventNs = 'esl:snippets';
   activeSnippet: any;
 
   @bind
@@ -40,7 +39,7 @@ export class ESLSnippets extends ESLBaseElement {
 
   private sendMarkUp() {
     const tmpl = this.activeSnippet.getElementsByTagName('template')[0];
-    this.$$fireNs('snippetChange', {detail: {markup:  tmpl.innerHTML}});
+    this.$$fire('markupChange', {detail: {markup:  tmpl.innerHTML, source: ESLSnippets.is}});
   }
 }
 
