@@ -1,8 +1,8 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
-import {ESLCheckSetting} from '../setting/input-setting/check-setting/check-setting';
-import {ESLListSetting} from '../setting/list-setting/list-setting';
-import {ESLTextSetting} from '../setting/input-setting/text-setting/text-setting';
-import {ESLSetting} from '../setting/setting';
+import {ESLCheckSetting} from './setting/input-setting/check-setting/check-setting';
+import {ESLListSetting} from './setting/list-setting/list-setting';
+import {ESLTextSetting} from './setting/input-setting/text-setting/text-setting';
+import {ESLSetting} from './setting/setting';
 import {Playground} from '../core/playground';
 
 
