@@ -1,20 +1,17 @@
-import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 import {ESLCheckSetting} from './setting/input-setting/check-setting/check-setting';
 import {ESLListSetting} from './setting/list-setting/list-setting';
 import {ESLTextSetting} from './setting/input-setting/text-setting/text-setting';
 import {ESLSetting} from './setting/setting';
-import {Playground} from '../core/playground';
+import {PlaygroundSubscriber} from '../playground-subscriber';
+import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
 
-
-export class ESLSettings extends ESLBaseElement {
+export class ESLSettings extends PlaygroundSubscriber {
   public static is = 'esl-settings';
-  public playground: Playground;
 
   protected connectedCallback() {
     super.connectedCallback();
+    this.setupPlaygroundConnection();
     this.bindEvents();
-    this.playground = (document.querySelector('esl-playground') as Playground);
-    customElements.whenDefined(Playground.is).then(() => this.playground.stateObservable.addListener(this.parseCode));
   }
 
   protected bindEvents() {
@@ -49,12 +46,13 @@ export class ESLSettings extends ESLBaseElement {
   }
 
   // TODO refactor this terrible method
-  public parseCode(code: string, source: string) {
+  @bind
+  public setMarkup(markup: string, source: string) {
     if (source === ESLSettings.is) {
       return;
     }
 
-    const elem = new DOMParser().parseFromString(code, 'text/html').body;
+    const elem = new DOMParser().parseFromString(markup, 'text/html').body;
     if (elem.children.length) {
       for (let settingTag of this.settingsTags) {
         settingTag = settingTag as typeof ESLSetting;
@@ -71,6 +69,7 @@ export class ESLSettings extends ESLBaseElement {
 
   private unbindEvents() {
     this.removeEventListener(`${ESLSetting}:valueChange`, this._onSettingsChanged);
+    this.removePlaygroundListeners();
   }
 }
 

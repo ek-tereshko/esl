@@ -1,4 +1,4 @@
-import {attr} from '../../../../../../src/modules/esl-base-element/core';
+import {attr} from '../../../../../../../src/modules/esl-base-element/core';
 import {ESLSetting} from '../setting';
 
 export class ESLListSetting extends ESLSetting {

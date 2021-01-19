@@ -1,26 +1,22 @@
 import * as ace from 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/html';
-import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
-import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
+import {debounce} from '../../../../../src/modules/esl-utils/async/debounce';
 import stripIndent from 'strip-indent';
-import {Playground} from '../core/playground';
+import {PlaygroundSubscriber} from '../playground-subscriber';
+import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
 
-export class ESLEditor extends ESLBaseElement {
+export class ESLEditor extends PlaygroundSubscriber {
   public static is = 'esl-editor';
   protected editor: ace.Editor;
-  protected playground: Playground;
 
   protected connectedCallback(): void {
     super.connectedCallback();
-
-    this.playground = (document.querySelector('esl-playground') as Playground);
-    customElements.whenDefined(Playground.is).then(() => this.playground.stateObservable.addListener(this.setMarkup));
+    this.setupPlaygroundConnection();
 
     this.editor = ace.edit(this);
     this.setEditorOptions();
-    this.editor.on('change', debounce(() => this.$$fire('markupChange',
-      {detail: {markup: this.editor.getValue(), source: ESLEditor.is}}), 1000));
+    this.editor.on('change', this.onChange);
   }
 
   protected setEditorOptions(): void {
@@ -34,6 +30,10 @@ export class ESLEditor extends ESLBaseElement {
     this.editor.session.setWrapLimitRange(125, 125);
   }
 
+  protected onChange = debounce(() => this.$$fire('markupChange',
+    {detail: {markup: this.editor.getValue(), source: ESLEditor.is}}), 1000);
+
+  @bind
   protected setMarkup(markup: string, source: string): void {
     if (source !== ESLEditor.is) {
       this.editor.setValue(stripIndent(markup).trim(), -1);
@@ -42,7 +42,8 @@ export class ESLEditor extends ESLBaseElement {
 
   protected disconnectedCallback() {
     super.disconnectedCallback();
-    this.playground.stateObservable.removeListener(this.setMarkup);
+    this.editor.removeListener('markupChange', this.onChange);
+    this.removePlaygroundListeners();
   }
 }
 
