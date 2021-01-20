@@ -1,50 +1,45 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import {ESLSnippet} from './snippet';
 import {Playground} from '../core/playground';
 
 export class ESLSnippets extends ESLBaseElement {
   public static is = 'esl-snippets';
-  activeSnippet: any;
   protected playground: Playground;
+  public static ACTIVE_CLASS = 'active';
 
-  @bind
-  private onClick(event: Event) {
-    const target = event.target;
-    if (target) {
-      this.changeActiveSnippet(target);
-      this.sendMarkUp();
-    }
+  public get activeSnippet(): HTMLElement | null {
+    return this.querySelector('.' + ESLSnippets.ACTIVE_CLASS) || null;
+  }
+  public set activeSnippet(snippet: HTMLElement | null) {
+    this.activeSnippet?.classList.remove(ESLSnippets.ACTIVE_CLASS);
+    snippet?.classList.add(ESLSnippets.ACTIVE_CLASS);
   }
 
   protected connectedCallback() {
     super.connectedCallback();
     this.playground = (document.querySelector('esl-playground') as Playground);
 
-    if (!ESLSnippets.getActiveSnippet()) {
-      this.activeSnippet = document.querySelectorAll('esl-snippet')[0];
-      this.activeSnippet.classList.add('active-snippet');
-    } else {
-      this.activeSnippet = ESLSnippets.getActiveSnippet();
+    if (!this.activeSnippet) {
+      this.activeSnippet = this.querySelectorAll(ESLSnippet.is)[0] as HTMLElement;
+
+      this.sendMarkUp();
+      this.addEventListener('click', this.onClick);
     }
+  }
+
+  protected sendMarkUp(): void {
+    const tmpl = this.activeSnippet?.getElementsByTagName('template')[0];
+    if (tmpl) {
+      this.playground.passMarkup(tmpl.innerHTML, ESLSnippets.is);
+    }
+  }
+
+  @bind
+  protected onClick(event: Event) {
+    this.activeSnippet = event.target as HTMLElement;
     this.sendMarkUp();
-    this.addEventListener('click', this.onClick);
-  }
-
-  private static getActiveSnippet() {
-     if (document.getElementsByClassName('active-snippet').length === 0) return null;
-     else return document.getElementsByClassName('active-snippet')[0];
-  }
-
-  private changeActiveSnippet(snippet: EventTarget) {
-    this.activeSnippet.classList.remove('active-snippet');
-    this.activeSnippet = snippet;
-    this.activeSnippet.classList.add('active-snippet');
-  }
-
-  private sendMarkUp() {
-    const tmpl = this.activeSnippet.getElementsByTagName('template')[0];
-    this.playground.passMarkup(tmpl.innerHTML, ESLSnippets.is);
   }
 }
 
-ESLSnippets.register();
+customElements.whenDefined(ESLSnippet.is).then(() => ESLSnippets.register());
