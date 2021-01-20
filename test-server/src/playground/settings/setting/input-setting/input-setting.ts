@@ -12,6 +12,6 @@ export abstract class ESLInputSetting extends ESLSetting {
   protected renderInput(inputType: string): void {
     this.input = document.createElement('input');
     this.input.type = inputType;
-    this.input.id = this.name;
+    this.input.name = this.name;
   }
 }

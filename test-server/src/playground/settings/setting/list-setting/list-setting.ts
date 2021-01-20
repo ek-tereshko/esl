@@ -26,7 +26,7 @@ export class ESLListSetting extends ESLSetting {
 
   protected render(): void {
     this.select = document.createElement('select');
-    this.select.id = this.name;
+    this.select.name = this.name;
     this.createOptions();
     this.value = this.select.value;
   }
