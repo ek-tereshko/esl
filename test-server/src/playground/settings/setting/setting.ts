@@ -1,5 +1,5 @@
-import {ESLBaseElement, attr} from '../../../../src/modules/esl-base-element/core';
-import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import {ESLBaseElement, attr} from '../../../../../src/modules/esl-base-element/core';
+import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
 
 export abstract class ESLSetting extends ESLBaseElement {
   static eventNs = 'esl:setting';

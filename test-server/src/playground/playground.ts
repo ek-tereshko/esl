@@ -1,9 +1,9 @@
-import './snippets/snippets';
+import './core/playground';
 import './editor/editor';
 import './preview/preview';
-import  './snippets/snippet';
-import './setting/input-setting/text-setting/text-setting';
-import './setting/input-setting/check-setting/check-setting';
-import './setting/list-setting/list-setting';
-import './core/playground';
+import './settings/setting/input-setting/text-setting/text-setting';
+import './settings/setting/input-setting/check-setting/check-setting';
+import './settings/setting/list-setting/list-setting';
 import './settings/settings';
+import  './snippets/snippet';
+import './snippets/snippets';

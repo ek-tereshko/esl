@@ -1,25 +1,27 @@
+import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import {Playground} from '../core/playground';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
-import {attr} from '../../../../src/modules/esl-base-element/decorators/attr';
 
 export class ESLPreview extends ESLBaseElement {
   static is = 'esl-preview';
-
-  @attr() public markup: string;
-
-  static get observedAttributes() {
-    return ['markup'];
-  }
+  protected playground: Playground;
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.innerHTML = this.markup;
+    this.playground = (document.querySelector('esl-playground') as Playground);
+    this.playground.subscribe(this.setMarkup);
   }
 
-  private attributeChangedCallback(attrName: string, oldVal: string, newVal: string) {
-    if (!this.connected || oldVal === newVal) return;
-    if (attrName === 'markup') {
-      this.innerHTML = newVal;
+  @bind
+  protected setMarkup(markup: string, source: string): void {
+    if (source !== ESLPreview.is) {
+      this.innerHTML = markup;
     }
+  }
+
+  protected disconnectedCallback() {
+    super.disconnectedCallback();
+    this.playground.unsubscribe(this.setMarkup);
   }
 }
 

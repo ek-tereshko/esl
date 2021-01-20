@@ -1,4 +1,4 @@
-import {attr} from '../../../../../../src/modules/esl-base-element/core';
+import {attr} from '../../../../../../../src/modules/esl-base-element/core';
 import {ESLInputSetting} from '../input-setting';
 
 export class ESLTextSetting extends ESLInputSetting {

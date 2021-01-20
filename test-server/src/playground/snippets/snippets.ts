@@ -1,10 +1,11 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLSnippet} from './snippet';
+import {Playground} from '../core/playground';
 
 export class ESLSnippets extends ESLBaseElement {
   public static is = 'esl-snippets';
-  public static eventNs = 'esl:snippets';
+  protected playground: Playground;
   public static ACTIVE_CLASS = 'active';
 
   public get activeSnippet(): HTMLElement | null {
@@ -17,24 +18,26 @@ export class ESLSnippets extends ESLBaseElement {
 
   protected connectedCallback() {
     super.connectedCallback();
+    this.playground = (document.querySelector('esl-playground') as Playground);
+
     if (!this.activeSnippet) {
       this.activeSnippet = this.querySelectorAll(ESLSnippet.is)[0] as HTMLElement;
-    }
 
-    setTimeout(() => this.sendMarkUp());
-    this.addEventListener('click', this.onClick);
+      this.sendMarkUp();
+      this.addEventListener('click', this.onClick);
+    }
   }
 
-  // TODO: change event name
-  protected sendMarkUp() {
+  protected sendMarkUp(): void {
     const tmpl = this.activeSnippet?.getElementsByTagName('template')[0];
-    this.$$fireNs('snippetChange', {detail: {markup: tmpl?.innerHTML}});
+    if (tmpl) {
+      this.playground.passMarkup(tmpl.innerHTML, ESLSnippets.is);
+    }
   }
 
   @bind
   protected onClick(event: Event) {
-    const target = event.target as HTMLElement;
-    this.activeSnippet = target;
+    this.activeSnippet = event.target as HTMLElement;
     this.sendMarkUp();
   }
 }
