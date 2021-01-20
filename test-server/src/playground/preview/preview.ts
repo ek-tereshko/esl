@@ -1,6 +1,7 @@
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {Playground} from '../core/playground';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
+import {TraversingQuery} from '../../../../src/modules/esl-traversing-query/core/esl-traversing-query';
 
 export class ESLPreview extends ESLBaseElement {
   static is = 'esl-preview';
@@ -8,7 +9,7 @@ export class ESLPreview extends ESLBaseElement {
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.playground = (document.querySelector('esl-playground') as Playground);
+    this.playground = TraversingQuery.first(`::parent(${Playground.is})`, this) as Playground;
     this.playground.subscribe(this.setMarkup);
   }
 

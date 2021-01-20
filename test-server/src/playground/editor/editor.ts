@@ -6,6 +6,7 @@ import stripIndent from 'strip-indent';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {Playground} from '../core/playground';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
+import {TraversingQuery} from '../../../../modules/esl-traversing-query/core/esl-traversing-query';
 
 export class ESLEditor extends ESLBaseElement {
   public static is = 'esl-editor';
@@ -14,7 +15,7 @@ export class ESLEditor extends ESLBaseElement {
 
   protected connectedCallback(): void {
     super.connectedCallback();
-    this.playground = (document.querySelector('esl-playground') as Playground);
+    this.playground = TraversingQuery.first(`::parent(${Playground.is})`, this) as Playground;
     this.playground.subscribe(this.setMarkup);
 
     this.editor = ace.edit(this);
