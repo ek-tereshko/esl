@@ -3,16 +3,19 @@ import 'brace/theme/chrome';
 import 'brace/mode/html';
 import {debounce} from '../../../../../src/modules/esl-utils/async/debounce';
 import stripIndent from 'strip-indent';
-import {PlaygroundSubscriber} from '../playground-subscriber';
 import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
+import {Playground} from '../../core/playground';
+import {ESLBaseElement} from '../../../../../src/modules/esl-base-element/core/esl-base-element';
 
-export class ESLEditor extends PlaygroundSubscriber {
+export class ESLEditor extends ESLBaseElement {
   public static is = 'esl-editor';
   protected editor: ace.Editor;
+  protected playground: Playground;
 
   protected connectedCallback(): void {
     super.connectedCallback();
-    this.setupPlaygroundConnection();
+    this.playground = (document.querySelector('esl-playground') as Playground);
+    this.playground.subscribe(this.setMarkup);
 
     this.editor = ace.edit(this);
     this.setEditorOptions();
@@ -30,8 +33,7 @@ export class ESLEditor extends PlaygroundSubscriber {
     this.editor.session.setWrapLimitRange(125, 125);
   }
 
-  protected onChange = debounce(() => this.$$fire('markupChange',
-    {detail: {markup: this.editor.getValue(), source: ESLEditor.is}}), 1000);
+  protected onChange = debounce(() => this.playground.passMarkup(this.editor.getValue(), ESLEditor.is), 1000);
 
   @bind
   protected setMarkup(markup: string, source: string): void {
@@ -42,8 +44,8 @@ export class ESLEditor extends PlaygroundSubscriber {
 
   protected disconnectedCallback() {
     super.disconnectedCallback();
-    this.editor.removeListener('markupChange', this.onChange);
-    this.removePlaygroundListeners();
+    this.editor.removeListener('change', this.onChange);
+    this.playground.unsubscribe(this.setMarkup);
   }
 }
 

@@ -1,9 +1,9 @@
-import './snippets/snippets';
+import './core/playground';
 import './playground-subscriber/editor/editor';
 import './playground-subscriber/preview/preview';
-import  './snippets/snippet';
 import './playground-subscriber/settings/setting/input-setting/text-setting/text-setting';
 import './playground-subscriber/settings/setting/input-setting/check-setting/check-setting';
 import './playground-subscriber/settings/setting/list-setting/list-setting';
-import './core/playground';
 import './playground-subscriber/settings/settings';
+import  './snippets/snippet';
+import './snippets/snippets';

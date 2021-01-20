@@ -1,12 +1,15 @@
-import {PlaygroundSubscriber} from '../playground-subscriber';
 import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
+import {Playground} from '../../core/playground';
+import {ESLBaseElement} from '../../../../../src/modules/esl-base-element/core/esl-base-element';
 
-export class ESLPreview extends PlaygroundSubscriber {
+export class ESLPreview extends ESLBaseElement {
   static is = 'esl-preview';
+  protected playground: Playground;
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.setupPlaygroundConnection();
+    this.playground = (document.querySelector('esl-playground') as Playground);
+    this.playground.subscribe(this.setMarkup);
   }
 
   @bind
@@ -18,7 +21,7 @@ export class ESLPreview extends PlaygroundSubscriber {
 
   protected disconnectedCallback() {
     super.disconnectedCallback();
-    this.removePlaygroundListeners();
+    this.playground.unsubscribe(this.setMarkup);
   }
 }
 

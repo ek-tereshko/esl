@@ -2,15 +2,18 @@ import {ESLCheckSetting} from './setting/input-setting/check-setting/check-setti
 import {ESLListSetting} from './setting/list-setting/list-setting';
 import {ESLTextSetting} from './setting/input-setting/text-setting/text-setting';
 import {ESLSetting} from './setting/setting';
-import {PlaygroundSubscriber} from '../playground-subscriber';
 import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
+import {ESLBaseElement} from '../../../../../src/modules/esl-base-element/core/esl-base-element';
+import {Playground} from '../../core/playground';
 
-export class ESLSettings extends PlaygroundSubscriber {
+export class ESLSettings extends ESLBaseElement {
   public static is = 'esl-settings';
+  protected playground: Playground;
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.setupPlaygroundConnection();
+    this.playground = (document.querySelector('esl-playground') as Playground);
+    this.playground.subscribe(this.parseCode);
     this.bindEvents();
   }
 
@@ -28,7 +31,7 @@ export class ESLSettings extends PlaygroundSubscriber {
       } else {
         value ? tag.setAttribute(name, '') : tag.removeAttribute(name);
       }
-      this.$$fire('markupChange', {detail: {markup: elem.innerHTML, source: ESLSettings.is}});
+      this.playground.passMarkup(elem.innerHTML, ESLSettings.is);
     }
   }
 
@@ -47,7 +50,7 @@ export class ESLSettings extends PlaygroundSubscriber {
 
   // TODO refactor this terrible method
   @bind
-  public setMarkup(markup: string, source: string) {
+  public parseCode(markup: string, source: string) {
     if (source === ESLSettings.is) {
       return;
     }
@@ -69,7 +72,7 @@ export class ESLSettings extends PlaygroundSubscriber {
 
   private unbindEvents() {
     this.removeEventListener(`${ESLSetting}:valueChange`, this._onSettingsChanged);
-    this.removePlaygroundListeners();
+    this.playground.unsubscribe(this.parseCode);
   }
 }
 

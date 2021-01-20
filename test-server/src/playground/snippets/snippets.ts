@@ -1,9 +1,11 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import {Playground} from '../core/playground';
 
 export class ESLSnippets extends ESLBaseElement {
   public static is = 'esl-snippets';
   activeSnippet: any;
+  protected playground: Playground;
 
   @bind
   private onClick(event: Event) {
@@ -16,13 +18,15 @@ export class ESLSnippets extends ESLBaseElement {
 
   protected connectedCallback() {
     super.connectedCallback();
+    this.playground = (document.querySelector('esl-playground') as Playground);
+
     if (!ESLSnippets.getActiveSnippet()) {
       this.activeSnippet = document.querySelectorAll('esl-snippet')[0];
       this.activeSnippet.classList.add('active-snippet');
     } else {
       this.activeSnippet = ESLSnippets.getActiveSnippet();
     }
-    setTimeout(() => this.sendMarkUp());
+    this.sendMarkUp();
     this.addEventListener('click', this.onClick);
   }
 
@@ -39,7 +43,7 @@ export class ESLSnippets extends ESLBaseElement {
 
   private sendMarkUp() {
     const tmpl = this.activeSnippet.getElementsByTagName('template')[0];
-    this.$$fire('markupChange', {detail: {markup:  tmpl.innerHTML, source: ESLSnippets.is}});
+    this.playground.passMarkup(tmpl.innerHTML, ESLSnippets.is);
   }
 }
 
