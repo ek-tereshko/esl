@@ -1,6 +1,6 @@
-import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
-import {Playground} from '../../core/playground';
-import {ESLBaseElement} from '../../../../../src/modules/esl-base-element/core/esl-base-element';
+import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import {Playground} from '../core/playground';
+import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 
 export class ESLPreview extends ESLBaseElement {
   static is = 'esl-preview';

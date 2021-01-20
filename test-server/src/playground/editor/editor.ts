@@ -1,11 +1,11 @@
 import * as ace from 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/html';
-import {debounce} from '../../../../../src/modules/esl-utils/async/debounce';
+import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import stripIndent from 'strip-indent';
-import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
-import {Playground} from '../../core/playground';
-import {ESLBaseElement} from '../../../../../src/modules/esl-base-element/core/esl-base-element';
+import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import {Playground} from '../core/playground';
+import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 
 export class ESLEditor extends ESLBaseElement {
   public static is = 'esl-editor';

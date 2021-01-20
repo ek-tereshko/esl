@@ -2,9 +2,9 @@ import {ESLCheckSetting} from './setting/input-setting/check-setting/check-setti
 import {ESLListSetting} from './setting/list-setting/list-setting';
 import {ESLTextSetting} from './setting/input-setting/text-setting/text-setting';
 import {ESLSetting} from './setting/setting';
-import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
-import {ESLBaseElement} from '../../../../../src/modules/esl-base-element/core/esl-base-element';
-import {Playground} from '../../core/playground';
+import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
+import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
+import {Playground} from '../core/playground';
 
 export class ESLSettings extends ESLBaseElement {
   public static is = 'esl-settings';

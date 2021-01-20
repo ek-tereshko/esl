@@ -1,4 +1,4 @@
-import {boolAttr} from '../../../../../../../../src/modules/esl-base-element/core';
+import {boolAttr} from '../../../../../../../src/modules/esl-base-element/core';
 import {ESLInputSetting} from '../input-setting';
 
 export class ESLCheckSetting extends ESLInputSetting {
