@@ -4,16 +4,16 @@ import {ESLTextSetting} from './setting/input-setting/text-setting/text-setting'
 import {ESLSetting} from './setting/setting';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
-import {Playground} from '../core/playground';
+import {ESLPlayground} from '../core/playground';
 import {TraversingQuery} from '../../../../src/modules/esl-traversing-query/core/esl-traversing-query';
 
 export class ESLSettings extends ESLBaseElement {
   public static is = 'esl-settings';
-  protected playground: Playground;
+  protected playground: ESLPlayground;
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.playground = TraversingQuery.first(`::parent(${Playground.is})`, this) as Playground;
+    this.playground = TraversingQuery.first(`::parent(${ESLPlayground.is})`, this) as ESLPlayground;
     this.playground.subscribe(this.parseCode);
     this.bindEvents();
   }
