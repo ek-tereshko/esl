@@ -12,11 +12,13 @@ ESLPlayground - state storage.
 
 - Playground contains method for updating current state change.
 
-- Tag: <esl-playground>
-
 ---
 
 ### Example:
+
+```html
+<esl-playground></esl-playground>
+```
 
 ```typescript
 import {ESLPlayground} from "./playground";
