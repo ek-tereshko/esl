@@ -2,8 +2,6 @@ import {ESLBaseElement, attr} from '../../../../../src/modules/esl-base-element/
 import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
 
 export abstract class ESLSetting extends ESLBaseElement {
-  static eventNs = 'esl:setting';
-
   @attr({readonly: true}) public name: string;
   @attr({readonly: true}) public for: string;
   public value: string | boolean;
@@ -29,7 +27,7 @@ export abstract class ESLSetting extends ESLBaseElement {
   protected onValueChange(e: Event): void {
     e.preventDefault();
     this.value = this.targetValue(e);
-    this.$$fireNs('valueChange', {detail: {name: this.name, value: this.value, forTag: this.for}});
+    this.$$fire('valueChange', {detail: {name: this.name, value: this.value, forTag: this.for}});
   }
 
   protected renderLabel(): void {
