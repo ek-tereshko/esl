@@ -1,0 +1,50 @@
+---
+layout: ./basic.html
+containerCls: container
+title: ESL Media Component
+---
+{{##content:
+<section class="row">
+  <div class='col-12'>
+    <esl-playground>
+
+      <div class="row">
+        <div class="col-2">
+          {{= layout.snippets || 'No snippets.' }}
+        </div>
+
+        <div class="col-10">
+
+          <div class="row">
+            <div class="col">
+              <span class="section-name">Preview</span>
+              <div class="preview-section">
+                <div class="preview-content">
+                  <esl-preview></esl-preview>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-3 settings-col">
+              <span class="section-name">Settings</span>
+              <div class="settings-section">
+                {{= layout.settings || 'No settings.' }}
+              </div>
+            </div>
+          </div>
+
+          <div class="editor-wrap">
+            <span class="section-name">Editor</span>
+            <div class="editor-section">
+              <esl-editor></esl-editor>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </esl-playground>
+  </div>
+</section>
+
+#}}
