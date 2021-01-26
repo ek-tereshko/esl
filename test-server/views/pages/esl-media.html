@@ -1,196 +1,155 @@
 ---
-layout: ../layouts/basic.html
+layout: ../layouts/playground.html
 containerCls: container
 title: ESL Media Component
 ---
 
-{{##content:
-<div class="description">
-  <p>ESL Media - is a esl container that gives you the same API for different providers under the hood
-    along with helpers like <em>lazy loading</em>, <em>activate query</em>, <em>picture cropping</em>.</p>
-</div>
-<hr/>
-<section class="row">
-  <div class='col-12'>
-    <esl-playground>
-
-      <div class="row">
-        <div class="col-2">
-          <esl-snippets>
-            <ul class='snippets-list'>
-              <li class='snippets-list-item border-bottom'>
-                <esl-snippet name='ESL Media HTML video'>
-                  <template>
-                    <esl-media group="demo-media"
-                               media-type="video"
-                               media-src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4"
-                               load-condition="(min-width: 500px)"
-                               load-cls-target="::parent(section)"
-                               load-cls-accepted="show-video"
-                               load-cls-declined="hide-video"
-                               controls>
-                    </esl-media>
-                  </template>
-                </esl-snippet>
-              </li>
-              <li class='snippets-list-item border-bottom'>
-                <esl-snippet name='ESL Media YouTube video'>
-                  <template>
-                    <div class="img-container img-container-16-9 img-container-loaded">
-                      <esl-media group="demo-media"
-                                 media-type="youtube"
-                                 media-id="5LD-EoiTjuY"
-                                 load-condition="(min-width: 500px)"
-                                 load-cls-target="::parent(section)"
-                                 load-cls-accepted="show-video"
-                                 load-cls-declined="hide-video"
-                                 controls>
-                      </esl-media>
-                    </div>
-                  </template>
-                </esl-snippet>
-              </li>
-              <li class='snippets-list-item border-bottom'>
-                <esl-snippet name='ESL Media Iframe video'>
-                  <template>
-                    <div class="img-container img-container-16-9 img-container-loaded">
-                      <esl-media media-type="iframe"
-                                 media-src="https://player.vimeo.com/video/1084537">
-                      </esl-media>
-                    </div>
-                  </template>
-                </esl-snippet>
-              </li>
-              <li class='snippets-list-item border-bottom'>
-                <esl-snippet name='Basic Audio Example'>
-                  <template>
-                    <esl-media group="demo-media"
-                               controls
-                               media-type="audio"
-                               media-src="https://html5book.ru/examples/media/track.mp3">
-                    </esl-media>
-                  </template>
-                </esl-snippet>
-              </li>
-              <li class='snippets-list-item border-bottom'>
-                <esl-snippet name='HTML video background'>
-                  <template>
-                    <div class="demo-marquee" style="height: 400px">
-                      <esl-media class="bg-content esl-media-bg"
-                                 media-type="video"
-                                 media-src="https://pixabay.com/videos/download/video-5200_large.mp4"
-                                 fill-mode="cover"
-                                 play-in-viewport
-                                 autoplay muted loop playsinline>
-                      </esl-media>
-                      <div class="demo-content contrast">
-                        <h2>Background media</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                          labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                          nisi ut
-                          aliquip ex ea commodo consequat.</p>
-                      </div>
-                    </div>
-                  </template>
-                </esl-snippet>
-              </li>
-              <li class='snippets-list-item border-bottom'>
-                <esl-snippet name='YouTube video background'>
-                  <template>
-                    <div class="demo-marquee" style="height: 400px">
-                      <esl-media class="bg-content esl-media-bg"
-                                 media-type="youtube"
-                                 media-id="inadorMBFEI"
-                                 fill-mode="cover"
-                                 aspect-ratio="4:3"
-                                 play-in-viewport
-                                 autoplay muted loop playsinline>
-                      </esl-media>
-                      <div class="demo-content contrast">
-                        <h2>Background media</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                          labore
-                          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                          nisi ut
-                          aliquip ex ea commodo consequat.</p>
-                      </div>
-                    </div>
-                  </template>
-                </esl-snippet>
-              </li>
-              <li class='snippets-list-item border-bottom'>
-                <esl-snippet name="Media with load conditions">
-                  <template>
-                    <div class="img-container img-container-16-9">
-                      <esl-media load-condition="@XS, @MOBILE"
-                                 media-type="youtube"
-                                 media-id="e1omOSkYltw"
-                                 autoplay="true"
-                                 muted loop>
-                      </esl-media>
-                    </div>
-                  </template>
-                </esl-snippet>
-              </li>
-            </ul>
-          </esl-snippets>
-        </div>
-
-        <div class="col-10">
-
-          <div class="row">
-            <div class="col">
-              <span class="section-name">Preview</span>
-              <div class="preview-section">
-                <div class="preview-content">
-                  <esl-preview></esl-preview>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-3 settings-col">
-              <span class="section-name">Settings</span>
-              <div class="settings-section">
-                <esl-settings>
-                  <esl-check-setting name="controls" for="esl-media"></esl-check-setting>
-                  <esl-check-setting name="muted" for="esl-media"></esl-check-setting>
-                  <esl-check-setting name="loop" for="esl-media"></esl-check-setting>
-                  <esl-check-setting name="disabled" for="esl-media"></esl-check-setting>
-                  <esl-text-setting name="media-id" for="esl-media"></esl-text-setting>
-                  <esl-text-setting name="media-type" for="esl-media"></esl-text-setting>
-                  <esl-text-setting name="media-src" for="esl-media"></esl-text-setting>
-                  <esl-text-setting name="aspect-ratio" for="esl-media"></esl-text-setting>
-                  <esl-text-setting name="load-condition" for="esl-media"></esl-text-setting>
-
-                  <esl-check-setting name="playsinline" for="esl-media"></esl-check-setting>
-                  <esl-check-setting name="play-in-viewport" for="esl-media"></esl-check-setting>
-                  <esl-check-setting name="autoplay" for="esl-media"></esl-check-setting>
-                  <esl-check-setting name="autofocus" for="esl-media"></esl-check-setting>
-
-                  <esl-list-setting name="fill-mode" for="esl-media">
-                    <esl-list-item value="auto">Auto mode</esl-list-item>
-                    <esl-list-item value="cover">Cover mode</esl-list-item>
-                    <esl-list-item value="inscribe">Inscribe mode</esl-list-item>
-                  </esl-list-setting>
-                </esl-settings>
-
-                </esl-settings>
-              </div>
+{{##snippets:
+<esl-snippets>
+  <ul class='snippets-list'>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='ESL Media HTML video'>
+        <template>
+          <esl-media group="demo-media"
+                     media-type="video"
+                     media-src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4"
+                     load-condition="(min-width: 500px)"
+                     load-cls-target="::parent(section)"
+                     load-cls-accepted="show-video"
+                     load-cls-declined="hide-video"
+                     controls>
+          </esl-media>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='ESL Media YouTube video'>
+        <template>
+          <div class="img-container img-container-16-9 img-container-loaded">
+            <esl-media group="demo-media"
+                       media-type="youtube"
+                       media-id="5LD-EoiTjuY"
+                       load-condition="(min-width: 500px)"
+                       load-cls-target="::parent(section)"
+                       load-cls-accepted="show-video"
+                       load-cls-declined="hide-video"
+                       controls>
+            </esl-media>
+          </div>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='ESL Media Iframe video'>
+        <template>
+          <div class="img-container img-container-16-9 img-container-loaded">
+            <esl-media media-type="iframe"
+                       media-src="https://player.vimeo.com/video/1084537">
+            </esl-media>
+          </div>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='Basic Audio Example'>
+        <template>
+          <esl-media group="demo-media"
+                     controls
+                     media-type="audio"
+                     media-src="https://html5book.ru/examples/media/track.mp3">
+          </esl-media>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='HTML video background'>
+        <template>
+          <div class="demo-marquee" style="height: 400px">
+            <esl-media class="bg-content esl-media-bg"
+                       media-type="video"
+                       media-src="https://pixabay.com/videos/download/video-5200_large.mp4"
+                       fill-mode="cover"
+                       play-in-viewport
+                       autoplay muted loop playsinline>
+            </esl-media>
+            <div class="demo-content contrast">
+              <h2>Background media</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore
+                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut
+                aliquip ex ea commodo consequat.</p>
             </div>
           </div>
-
-          <div class="editor-wrap">
-            <span class="section-name">Editor</span>
-            <div class="editor-section">
-              <esl-editor></esl-editor>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name='YouTube video background'>
+        <template>
+          <div class="demo-marquee" style="height: 400px">
+            <esl-media class="bg-content esl-media-bg"
+                       media-type="youtube"
+                       media-id="inadorMBFEI"
+                       fill-mode="cover"
+                       aspect-ratio="4:3"
+                       play-in-viewport
+                       autoplay muted loop playsinline>
+            </esl-media>
+            <div class="demo-content contrast">
+              <h2>Background media</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                labore
+                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+                nisi ut
+                aliquip ex ea commodo consequat.</p>
             </div>
           </div>
-        </div>
+        </template>
+      </esl-snippet>
+    </li>
+    <li class='snippets-list-item border-bottom'>
+      <esl-snippet name="Media with load conditions">
+        <template>
+          <div class="img-container img-container-16-9">
+            <esl-media load-condition="@XS, @MOBILE"
+                       media-type="youtube"
+                       media-id="e1omOSkYltw"
+                       autoplay="true"
+                       muted loop>
+            </esl-media>
+          </div>
+        </template>
+      </esl-snippet>
+    </li>
+  </ul>
+</esl-snippets>
 
-      </div>
+#}}
 
-    </esl-playground>
-  </div>
-</section>
+{{##settings:
+<esl-settings>
+  <esl-check-setting name="controls" for="esl-media"></esl-check-setting>
+  <esl-check-setting name="muted" for="esl-media"></esl-check-setting>
+  <esl-check-setting name="loop" for="esl-media"></esl-check-setting>
+  <esl-check-setting name="disabled" for="esl-media"></esl-check-setting>
+  <esl-text-setting name="media-id" for="esl-media"></esl-text-setting>
+  <esl-text-setting name="media-type" for="esl-media"></esl-text-setting>
+  <esl-text-setting name="media-src" for="esl-media"></esl-text-setting>
+  <esl-text-setting name="aspect-ratio" for="esl-media"></esl-text-setting>
+  <esl-text-setting name="load-condition" for="esl-media"></esl-text-setting>
+
+  <esl-check-setting name="playsinline" for="esl-media"></esl-check-setting>
+  <esl-check-setting name="play-in-viewport" for="esl-media"></esl-check-setting>
+  <esl-check-setting name="autoplay" for="esl-media"></esl-check-setting>
+  <esl-check-setting name="autofocus" for="esl-media"></esl-check-setting>
+
+  <esl-list-setting name="fill-mode" for="esl-media">
+    <esl-list-item value="auto">Auto mode</esl-list-item>
+    <esl-list-item value="cover">Cover mode</esl-list-item>
+    <esl-list-item value="inscribe">Inscribe mode</esl-list-item>
+  </esl-list-setting>
+</esl-settings>
+
+</esl-settings>
 #}}
