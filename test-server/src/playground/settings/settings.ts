@@ -23,17 +23,19 @@ export class ESLSettings extends ESLBaseElement {
   }
 
   private _onSettingsChanged(e: any) {
-    const elem = new DOMParser().parseFromString(this.playground?.state, 'text/html').body;
-    const {name, value, forTag} = e.detail; // check?
-    if (elem.children.length) {
-      const tag = (forTag === '') ? elem.firstElementChild : elem.getElementsByTagName(forTag || '')[0]; // [0]???
-      if (typeof value !== 'boolean') {
-        tag.setAttribute(name, value);
-      } else {
-        value ? tag.setAttribute(name, '') : tag.removeAttribute(name);
-      }
-      this.playground.passMarkup(elem.innerHTML, ESLSettings.is);
+    const {name, value, forTag} = e.detail;
+    if (!forTag || !name) return;
+
+    const elem = new DOMParser().parseFromString(this.playground.state, 'text/html').body;
+    const tag = elem.getElementsByTagName(forTag)[0];
+    if (!tag) return;
+
+    if (typeof value !== 'boolean') {
+      tag.setAttribute(name, value);
+    } else {
+      value ? tag.setAttribute(name, '') : tag.removeAttribute(name);
     }
+    this.playground.passMarkup(elem.innerHTML, ESLSettings.is);
   }
 
   protected disconnectedCallback() {
@@ -49,25 +51,21 @@ export class ESLSettings extends ESLBaseElement {
     ];
   }
 
-  // TODO refactor this terrible method
   @bind
   public parseCode(markup: string, source: string) {
-    if (source === ESLSettings.is) {
-      return;
-    }
+    if (source === ESLSettings.is) return;
 
     const elem = new DOMParser().parseFromString(markup, 'text/html').body;
-    if (elem.children.length) {
-      for (let settingTag of this.settingsTags) {
-        settingTag = settingTag as typeof ESLSetting;
-        const attrName = settingTag.name;
-        const tagName = settingTag.for;
-        const tag = (tagName === '') ? elem.firstElementChild : elem.getElementsByTagName(tagName || '')[0]; // [0]???
-        if (attrName && tag) {
-          const attrValue = tag.getAttribute(attrName);
-          settingTag.setAttribute('value', attrValue);
-        }
-      }
+    for (let settingTag of this.settingsTags) {
+      settingTag = settingTag as typeof ESLSetting;
+      const {name, for: forTag} = settingTag;
+      if (!forTag || !name) continue;
+
+      const tag = elem.getElementsByTagName(forTag)[0];
+      if (!tag) continue;
+
+      const attrValue = tag.getAttribute(name);
+      settingTag.setAttribute('value', attrValue);
     }
   }
 
