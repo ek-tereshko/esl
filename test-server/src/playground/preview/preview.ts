@@ -10,7 +10,9 @@ export class ESLPreview extends ESLBaseElement {
   protected connectedCallback() {
     super.connectedCallback();
     this.playground = TraversingQuery.first(`::parent(${ESLPlayground.is})`, this) as ESLPlayground;
-    this.playground.subscribe(this.setMarkup);
+    if (this.playground) {
+      this.playground.subscribe(this.setMarkup);
+    }
   }
 
   @bind

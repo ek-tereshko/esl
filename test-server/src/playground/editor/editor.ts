@@ -16,7 +16,9 @@ export class ESLEditor extends ESLBaseElement {
   protected connectedCallback(): void {
     super.connectedCallback();
     this.playground = TraversingQuery.first(`::parent(${ESLPlayground.is})`, this) as ESLPlayground;
-    this.playground.subscribe(this.setMarkup);
+    if (this.playground) {
+      this.playground.subscribe(this.setMarkup);
+    }
 
     this.editor = ace.edit(this);
     this.setEditorOptions();

@@ -14,7 +14,9 @@ export class ESLSettings extends ESLBaseElement {
   protected connectedCallback() {
     super.connectedCallback();
     this.playground = TraversingQuery.first(`::parent(${ESLPlayground.is})`, this) as ESLPlayground;
-    this.playground.subscribe(this.parseCode);
+    if (this.playground) {
+      this.playground.subscribe(this.parseCode);
+    }
     this.bindEvents();
   }
 

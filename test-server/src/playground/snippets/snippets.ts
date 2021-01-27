@@ -31,7 +31,7 @@ export class ESLSnippets extends ESLBaseElement {
 
   protected sendMarkUp(): void {
     const tmpl = this.activeSnippet?.getElementsByTagName('template')[0];
-    if (tmpl) {
+    if (tmpl && this.playground) {
       this.playground.passMarkup(tmpl.innerHTML, ESLSnippets.is);
     }
   }
