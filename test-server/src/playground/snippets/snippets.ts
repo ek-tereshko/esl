@@ -19,14 +19,13 @@ export class ESLSnippets extends ESLBaseElement {
 
   protected connectedCallback() {
     super.connectedCallback();
+    this.addEventListener('click', this.onClick);
     this.playground = TraversingQuery.first(`::parent(${ESLPlayground.is})`, this) as ESLPlayground;
 
     if (!this.activeSnippet) {
       this.activeSnippet = this.querySelectorAll(ESLSnippet.is)[0] as HTMLElement;
-
-      this.sendMarkUp();
-      this.addEventListener('click', this.onClick);
     }
+    this.sendMarkUp();
   }
 
   protected sendMarkUp(): void {
