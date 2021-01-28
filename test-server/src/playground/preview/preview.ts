@@ -24,7 +24,7 @@ export class ESLPreview extends ESLBaseElement {
 
   protected disconnectedCallback() {
     super.disconnectedCallback();
-    this.playground.unsubscribe(this.setMarkup);
+    this.playground && this.playground.unsubscribe(this.setMarkup);
   }
 }
 

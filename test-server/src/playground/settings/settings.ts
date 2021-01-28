@@ -73,7 +73,7 @@ export class ESLSettings extends ESLBaseElement {
 
   private unbindEvents() {
     this.removeEventListener(`${ESLSetting}:valueChange`, this._onSettingsChanged);
-    this.playground.unsubscribe(this.parseCode);
+    this.playground && this.playground.unsubscribe(this.parseCode);
   }
 }
 

@@ -48,7 +48,7 @@ export class ESLEditor extends ESLBaseElement {
   protected disconnectedCallback() {
     super.disconnectedCallback();
     this.editor.removeListener('change', this.onChange);
-    this.playground.unsubscribe(this.setMarkup);
+    this.playground && this.playground.unsubscribe(this.setMarkup);
   }
 }
 
