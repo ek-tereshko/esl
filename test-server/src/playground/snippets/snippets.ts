@@ -40,6 +40,11 @@ export class ESLSnippets extends ESLBaseElement {
     this.activeSnippet = event.target as HTMLElement;
     this.sendMarkUp();
   }
+
+  protected disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.onClick);
+  }
 }
 
 customElements.whenDefined(ESLSnippet.is).then(() => ESLSnippets.register());
