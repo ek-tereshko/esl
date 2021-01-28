@@ -10,8 +10,9 @@ export class ESLSnippets extends ESLBaseElement {
   public static ACTIVE_CLASS = 'active';
 
   public get activeSnippet(): HTMLElement | null {
-    return this.querySelector('.' + ESLSnippets.ACTIVE_CLASS) || null;
+    return this.querySelector('.' + ESLSnippets.ACTIVE_CLASS);
   }
+
   public set activeSnippet(snippet: HTMLElement | null) {
     this.activeSnippet?.classList.remove(ESLSnippets.ACTIVE_CLASS);
     snippet?.classList.add(ESLSnippets.ACTIVE_CLASS);
