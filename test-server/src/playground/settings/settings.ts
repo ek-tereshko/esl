@@ -25,19 +25,19 @@ export class ESLSettings extends ESLBaseElement {
   }
 
   private _onSettingsChanged(e: any) {
-    const {name, value, forTag} = e.detail;
-    if (!forTag || !name) return;
+    const {name, value, selector} = e.detail;
+    if (!selector || !name) return;
 
-    const elem = new DOMParser().parseFromString(this.playground.state, 'text/html').body;
-    const tag = elem.getElementsByTagName(forTag)[0];
-    if (!tag) return;
+    const component = new DOMParser().parseFromString(this.playground.state, 'text/html').body;
+    const tags = component.querySelectorAll(selector);
+    if (!tags.length) return;
 
     if (typeof value !== 'boolean') {
-      tag.setAttribute(name, value);
+      tags.forEach(tag => tag.setAttribute(name, value));
     } else {
-      value ? tag.setAttribute(name, '') : tag.removeAttribute(name);
+      value ? tags.forEach(tag => tag.setAttribute(name, '')) : tags.forEach(tag => tag.removeAttribute(name));
     }
-    this.playground.passMarkup(elem.innerHTML, ESLSettings.is);
+    this.playground.passMarkup(component.innerHTML, ESLSettings.is);
   }
 
   protected disconnectedCallback() {
@@ -57,23 +57,29 @@ export class ESLSettings extends ESLBaseElement {
   public parseCode(markup: string, source: string) {
     if (source === ESLSettings.is) return;
 
-    const elem = new DOMParser().parseFromString(markup, 'text/html').body;
+    const component = new DOMParser().parseFromString(markup, 'text/html').body;
     for (let settingTag of this.settingsTags) {
       settingTag = settingTag as typeof ESLSetting;
-      const {name, for: forTag} = settingTag;
-      if (!forTag || !name) continue;
+      const {name, for: selector} = settingTag;
+      if (!selector || !name) continue;
 
-      const tag = elem.getElementsByTagName(forTag)[0];
-      if (!tag) continue;
+      const attrValues = Array.prototype.map.call(component.querySelectorAll(selector),
+        (tag: HTMLElement) => tag.getAttribute(name));
+      if (!attrValues.length) continue;
 
-      const attrValue = tag.getAttribute(name);
-      settingTag.setAttribute('value', attrValue);
+      if (attrValues.length === 1) {
+        settingTag.setAttribute('value', attrValues[0]);
+      }
+      else {
+        attrValues.every((value: string) => value === attrValues[0]) ?
+          settingTag.setAttribute('value', attrValues[0]) : settingTag.setAttribute('value', 'null');
+      }
     }
   }
 
   private unbindEvents() {
-    this.removeEventListener(`${ESLSetting}:valueChange`, this._onSettingsChanged);
-    this.playground && this.playground.unsubscribe(this.parseCode);
+    this.removeEventListener('valueChange', this._onSettingsChanged);
+    this.playground.unsubscribe(this.parseCode);
   }
 }
 
