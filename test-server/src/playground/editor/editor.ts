@@ -2,11 +2,11 @@ import * as ace from 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/html';
 import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
-import stripIndent from 'strip-indent';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLPlayground} from '../core/playground';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 import {TraversingQuery} from '../../../../modules/esl-traversing-query/core/esl-traversing-query';
+import js_beautify from 'js-beautify';
 
 export class ESLEditor extends ESLBaseElement {
   public static is = 'esl-editor';
@@ -46,7 +46,7 @@ export class ESLEditor extends ESLBaseElement {
   protected setMarkup(markup: string, source: string): void {
     if (source !== ESLEditor.is) {
       this.triggerChanges = false;
-      this.editor.setValue(stripIndent(markup).trim(), -1);
+      this.editor.setValue(js_beautify.html(markup), -1);
     }
   }
 
