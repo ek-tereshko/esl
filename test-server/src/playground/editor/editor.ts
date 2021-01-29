@@ -12,6 +12,7 @@ export class ESLEditor extends ESLBaseElement {
   public static is = 'esl-editor';
   protected editor: ace.Editor;
   protected playground: ESLPlayground;
+  protected triggerChanges: boolean;
 
   protected connectedCallback(): void {
     super.connectedCallback();
@@ -36,11 +37,15 @@ export class ESLEditor extends ESLBaseElement {
     this.editor.session.setWrapLimitRange(125, 125);
   }
 
-  protected onChange = debounce(() => this.playground.passMarkup(this.editor.getValue(), ESLEditor.is), 1000);
+  protected onChange = debounce(() => {
+    this.triggerChanges && this.playground.passMarkup(this.editor.getValue(), ESLEditor.is);
+    this.triggerChanges = true;
+  }, 1000);
 
   @bind
   protected setMarkup(markup: string, source: string): void {
     if (source !== ESLEditor.is) {
+      this.triggerChanges = false;
       this.editor.setValue(stripIndent(markup).trim(), -1);
     }
   }
@@ -48,7 +53,7 @@ export class ESLEditor extends ESLBaseElement {
   protected disconnectedCallback() {
     super.disconnectedCallback();
     this.editor.removeListener('change', this.onChange);
-    this.playground.unsubscribe(this.setMarkup);
+    this.playground && this.playground.unsubscribe(this.setMarkup);
   }
 }
 

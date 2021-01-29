@@ -10,8 +10,9 @@ export class ESLSnippets extends ESLBaseElement {
   public static ACTIVE_CLASS = 'active';
 
   public get activeSnippet(): HTMLElement | null {
-    return this.querySelector('.' + ESLSnippets.ACTIVE_CLASS) || null;
+    return this.querySelector('.' + ESLSnippets.ACTIVE_CLASS);
   }
+
   public set activeSnippet(snippet: HTMLElement | null) {
     this.activeSnippet?.classList.remove(ESLSnippets.ACTIVE_CLASS);
     snippet?.classList.add(ESLSnippets.ACTIVE_CLASS);
@@ -19,14 +20,13 @@ export class ESLSnippets extends ESLBaseElement {
 
   protected connectedCallback() {
     super.connectedCallback();
+    this.addEventListener('click', this.onClick);
     this.playground = TraversingQuery.first(`::parent(${ESLPlayground.is})`, this) as ESLPlayground;
 
     if (!this.activeSnippet) {
       this.activeSnippet = this.querySelectorAll(ESLSnippet.is)[0] as HTMLElement;
-
-      this.sendMarkUp();
-      this.addEventListener('click', this.onClick);
     }
+    this.sendMarkUp();
   }
 
   protected sendMarkUp(): void {
@@ -40,6 +40,11 @@ export class ESLSnippets extends ESLBaseElement {
   protected onClick(event: Event) {
     this.activeSnippet = event.target as HTMLElement;
     this.sendMarkUp();
+  }
+
+  protected disconnectedCallback() {
+    super.disconnectedCallback();
+    this.removeEventListener('click', this.onClick);
   }
 }
 
