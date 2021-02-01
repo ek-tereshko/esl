@@ -34,7 +34,7 @@ export class ESLEditor extends ESLBaseElement {
       wrap: true,
     });
 
-    this.editor.session.setWrapLimitRange(125, 125);
+    this.editor.session.setWrapLimitRange(120, 120);
   }
 
   protected onChange = debounce(() => {
