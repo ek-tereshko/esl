@@ -12,18 +12,20 @@ title: ESL Media Component
 
     <div class="sections-wrapper">
 
-      <div class="preview-settings">
-        <div class="preview-wrapper">
+      <div class="{{= layout.settings ? 'preview-settings' : ''}}">
+        <div class="{{= layout.settings ? 'preview-wrapper' : '' }}">
           <span class="section-name">Preview</span>
           <esl-preview class="preview-section"></esl-preview>
         </div>
 
+        {{? layout.settings}}
         <div class="settings-wrapper">
           <span class="section-name">Settings</span>
           <div class="settings-section">
-            {{= layout.settings || 'No settings.' }}
+            {{= layout.settings }}
           </div>
         </div>
+        {{?}}
       </div>
 
       <div class="editor-wrapper">
