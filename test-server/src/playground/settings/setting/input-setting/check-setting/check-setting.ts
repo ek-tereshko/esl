@@ -5,7 +5,7 @@ export class ESLCheckSetting extends ESLInputSetting {
   public static is = 'esl-check-setting';
   @boolAttr() public value: boolean = false;
 
-  protected targetValue(e: Event): string | boolean {
+  protected targetValue(e: Event): boolean {
     return (e.target as HTMLInputElement).checked;
   }
 
