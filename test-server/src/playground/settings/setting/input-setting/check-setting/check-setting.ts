@@ -12,9 +12,8 @@ export class ESLCheckSetting extends ESLInputSetting {
   protected attributeChangedCallback(attrName: string, oldVal: string, newVal: string): void {
     if (!this.connected || oldVal === newVal) return;
 
-    const val = (newVal === '');
-    if (attrName === 'value' && this.input.checked !== val) {
-      this.input.checked = val;
+    if (attrName === 'value') {
+      this.input.checked = this.value;
     }
   }
 

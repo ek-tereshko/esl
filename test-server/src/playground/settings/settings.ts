@@ -68,9 +68,9 @@ export class ESLSettings extends ESLBaseElement {
       if (!attrValues.length) continue;
 
       if (attrValues.length === 1) {
-        settingTag.setAttribute('value', attrValues[0]);
-      }
-      else {
+        const [val] = attrValues;
+        (val === null) ? settingTag.removeAttribute('value') : settingTag.setAttribute('value', val);
+      } else {
         attrValues.every((value: string) => value === attrValues[0]) ?
           settingTag.setAttribute('value', attrValues[0]) : settingTag.setAttribute('value', 'null');
       }
