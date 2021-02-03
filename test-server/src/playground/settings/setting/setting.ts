@@ -3,7 +3,7 @@ import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
 
 export abstract class ESLSetting extends ESLBaseElement {
   @attr({readonly: true}) public name: string;
-  @attr({readonly: true}) public for: string;
+  @attr({readonly: true}) public selector: string;
   public value: string | boolean;
 
   protected abstract render(): void;
@@ -27,13 +27,13 @@ export abstract class ESLSetting extends ESLBaseElement {
   protected onValueChange(e: Event): void {
     e.preventDefault();
     this.value = this.targetValue(e);
-    this.$$fire('valueChange', {detail: {name: this.name, value: this.value, selector: this.for}});
+    this.$$fire('valueChange', {detail: {name: this.name, value: this.value, selector: this.selector}});
   }
 
   protected renderLabel(): void {
     const label = document.createElement('label');
-    if (this.for) {
-      label.innerHTML = `${this.name} (${this.for})`;
+    if (this.selector) {
+      label.innerHTML = `${this.name} (${this.selector})`;
     } else label.innerText = this.name;
     label.htmlFor = this.name;
 

@@ -60,7 +60,7 @@ export class ESLSettings extends ESLBaseElement {
     const component = new DOMParser().parseFromString(markup, 'text/html').body;
     for (let settingTag of this.settingsTags) {
       settingTag = settingTag as typeof ESLSetting;
-      const {name, for: selector} = settingTag;
+      const {name, selector} = settingTag;
       if (!selector || !name) continue;
 
       const attrValues = Array.prototype.map.call(component.querySelectorAll(selector),
