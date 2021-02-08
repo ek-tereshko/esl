@@ -1,6 +1,7 @@
 import {ESLCheckSetting} from './setting/input-setting/check-setting/check-setting';
 import {ESLListSetting} from './setting/list-setting/list-setting';
 import {ESLTextSetting} from './setting/input-setting/text-setting/text-setting';
+import {ESLClassSetting} from './setting/list-setting/class-setting/class-setting';
 import {ESLSetting} from './setting/setting';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
@@ -26,7 +27,18 @@ export class ESLSettings extends ESLBaseElement {
   }
 
   private _onClassChange(e: any) {
-    console.log(e.value);
+    const {value, prevValue, selector} = e.detail;
+
+    const component = new DOMParser().parseFromString(this.playground.state, 'text/html').body;
+    const tags = component.querySelectorAll(selector);
+    if (!tags.length) return;
+
+    tags.forEach(tag => {
+      prevValue && tag.classList.remove(prevValue);
+      tag.classList.add(value);
+    });
+
+    this.playground.passMarkup(component.innerHTML, ESLSettings.is);
   }
 
   private _onSettingsChanged(e: any) {
@@ -55,6 +67,7 @@ export class ESLSettings extends ESLBaseElement {
       ...this.getElementsByTagName(ESLCheckSetting.is),
       ...this.getElementsByTagName(ESLListSetting.is),
       ...this.getElementsByTagName(ESLTextSetting.is),
+      ...this.getElementsByTagName(ESLClassSetting.is)
     ];
   }
 
