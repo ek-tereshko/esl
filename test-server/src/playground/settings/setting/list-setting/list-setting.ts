@@ -6,13 +6,12 @@ export class ESLListSetting extends ESLSetting {
   protected select: HTMLSelectElement;
 
   @attr() public value: string;
-  @attr({readonly: true}) public values: string;
 
   protected get target(): HTMLElement {
     return this.select;
   }
 
-  protected targetValue(e: Event): string | boolean {
+  protected targetValue(e: Event): string {
     return (e.target as HTMLSelectElement).value;
   }
 

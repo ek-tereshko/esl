@@ -22,6 +22,11 @@ export class ESLSettings extends ESLBaseElement {
 
   protected bindEvents() {
     this.addEventListener('valueChange', this._onSettingsChanged);
+    this.addEventListener('classChange', this._onClassChange);
+  }
+
+  private _onClassChange(e: any) {
+    console.log(e.value);
   }
 
   private _onSettingsChanged(e: any) {
