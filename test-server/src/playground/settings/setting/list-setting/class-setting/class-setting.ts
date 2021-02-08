@@ -1,8 +1,10 @@
 import {ESLListSetting} from '../list-setting';
+import {bind} from '../../../../../../../src/modules/esl-utils/decorators/bind';
 
 export class ESLClassSetting extends ESLListSetting {
   public static is = 'esl-class-setting';
 
+  @bind
   protected onValueChange(e: Event) {
     e.preventDefault();
     const prevValue = this.value;
@@ -10,3 +12,5 @@ export class ESLClassSetting extends ESLListSetting {
     this.$$fire('classChange', {detail: {value: this.value, selector: this.selector, prevValue}});
   }
 }
+
+ESLClassSetting.register();

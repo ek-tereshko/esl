@@ -4,6 +4,7 @@ import './preview/preview';
 import './settings/setting/input-setting/text-setting/text-setting';
 import './settings/setting/input-setting/check-setting/check-setting';
 import './settings/setting/list-setting/list-setting';
+import './settings/setting/list-setting/class-setting/class-setting';
 import './settings/settings';
 import  './snippets/snippet';
 import './snippets/snippets';
