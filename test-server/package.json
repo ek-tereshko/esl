@@ -12,6 +12,8 @@
   },
   "sideEffects": [
     "src/common/*.ts",
+    "src/polyfill-light.ts",
+    "src/polyfill-full.ts",
     "src/playground/**/*.ts"
   ],
   "private": true,
