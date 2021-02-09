@@ -6,13 +6,16 @@ export class ESLListSetting extends ESLSetting {
   protected select: HTMLSelectElement;
 
   @attr() public value: string;
-  @attr({readonly: true}) public values: string;
 
-  protected get target(): HTMLElement {
+  protected get target(): HTMLSelectElement {
     return this.select;
   }
 
-  protected targetValue(e: Event): string | boolean {
+  protected get values(): string[] {
+    return Array.prototype.map.call(this.target.options, (opt: HTMLOptionElement) => opt.value);
+  }
+
+  protected targetValue(e: Event): string {
     return (e.target as HTMLSelectElement).value;
   }
 

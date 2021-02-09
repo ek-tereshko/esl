@@ -95,6 +95,23 @@ title: ESL Accordion <span class="badge badge-warning">Beta</span>
 #}}
 
 {{##settings:
+<style>
+  .red-color {
+    color: red;
+  }
+
+  .green-color {
+    color: green;
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+</style>
 <esl-settings>
   <esl-list-setting name="event" selector="esl-trigger">
     <esl-list-item value="click">click</esl-list-item>
@@ -102,5 +119,13 @@ title: ESL Accordion <span class="badge badge-warning">Beta</span>
   </esl-list-setting>
   <esl-text-setting name="style" selector="esl-trigger"></esl-text-setting>
   <esl-text-setting name="style" selector="esl-panel"></esl-text-setting>
+  <esl-class-setting name="color-class" selector=".card">
+    <esl-list-item value="red-color">red</esl-list-item>
+    <esl-list-item value="green-color">green</esl-list-item>
+  </esl-class-setting>
+  <esl-class-setting name="font" selector=".card">
+    <esl-list-item value="italic">italic</esl-list-item>
+    <esl-list-item value="bold">bold</esl-list-item>
+  </esl-class-setting>
 </esl-settings>
 #}}

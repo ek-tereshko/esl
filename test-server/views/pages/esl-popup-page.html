@@ -145,10 +145,35 @@ title: ESL Popup and ESL Popup Trigger components <span class="badge badge-warni
 #}}
 
 {{##settings:
+<style>
+  .red-color {
+    color: red;
+  }
+
+  .green-color {
+    color: green;
+  }
+
+  .italic {
+    font-style: italic;
+  }
+
+  .bold {
+    font-weight: bold;
+  }
+</style>
 <esl-settings>
   <esl-list-setting name="event" selector="esl-trigger">
     <esl-list-item value="click">Click</esl-list-item>
     <esl-list-item value="hover">Hover</esl-list-item>
   </esl-list-setting>
+  <esl-class-setting name="color-class" selector=".alert-warning">
+    <esl-list-item value="red-color">red</esl-list-item>
+    <esl-list-item value="green-color">green</esl-list-item>
+  </esl-class-setting>
+  <esl-class-setting name="font" selector=".alert-warning">
+    <esl-list-item value="italic">italic</esl-list-item>
+    <esl-list-item value="bold">bold</esl-list-item>
+  </esl-class-setting>
 </esl-settings>
 #}}
