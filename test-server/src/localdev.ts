@@ -26,7 +26,8 @@ import {
   ESLTabsContainer,
   ESLScrollableTabs,
   ESLScrollbar,
-  ESLAlert
+  ESLAlert,
+  ESLPopupDispatcher
 } from '../../src/modules/all';
 
 import '../../src/modules/esl-media/providers/iframe-provider';
@@ -36,6 +37,8 @@ import '../../src/modules/esl-media/providers/youtube-provider';
 import '../../src/modules/esl-media/providers/brightcove-provider';
 
 import {
+  ESLSelect,
+  ESLSelectList,
   ESLCarousel,
   ESLCarouselPlugins
 } from '../../src/modules/draft/all';
@@ -43,6 +46,7 @@ import {
 ESLImage.register();
 ESLMedia.register();
 
+ESLPopupDispatcher.init();
 ESLPopup.register();
 ESLPanel.register();
 ESLPanelStack.register();
@@ -56,6 +60,9 @@ ESLScrollableTabs.register();
 
 ESLScrollbar.register();
 ESLAlert.init();
+
+ESLSelectList.register();
+ESLSelect.register();
 
 ESLCarousel.register();
 ESLCarouselPlugins.Dots.register();

@@ -1,4 +1,4 @@
-import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
+import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {PlaygroundObservable} from '../utils/observable';
 
 export class ESLPlayground extends ESLBaseElement {
