@@ -27,14 +27,15 @@ export class ESLSettings extends ESLBaseElement {
   }
 
   private _onClassChange(e: any) {
-    const {value, prevValue, selector} = e.detail;
+    const {value, selector, values} = e.detail;
 
     const component = new DOMParser().parseFromString(this.playground.state, 'text/html').body;
     const tags = component.querySelectorAll(selector);
     if (!tags.length) return;
 
-    tags.forEach(tag => {
-      prevValue && tag.classList.remove(prevValue);
+    tags.forEach((tag: HTMLElement) => {
+      const removeClass = values.find((val: string) => tag.classList.contains(val));
+      removeClass && tag.classList.remove(removeClass);
       tag.classList.add(value);
     });
 

@@ -7,9 +7,8 @@ export class ESLClassSetting extends ESLListSetting {
   @bind
   protected onValueChange(e: Event) {
     e.preventDefault();
-    const prevValue = this.value;
     this.value = this.targetValue(e);
-    this.$$fire('classChange', {detail: {value: this.value, selector: this.selector, prevValue}});
+    this.$$fire('classChange', {detail: {value: this.value, selector: this.selector, values: this.values}});
   }
 }
 
