@@ -1,5 +1,6 @@
 import {ESLBaseElement, attr} from '../../../../../src/modules/esl-base-element/core';
 import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
+import {EventUtils} from '../../../../../src/modules/esl-utils/dom/events';
 
 export abstract class ESLSetting extends ESLBaseElement {
   @attr({readonly: true}) public name: string;
@@ -27,7 +28,7 @@ export abstract class ESLSetting extends ESLBaseElement {
   protected onValueChange(e: Event): void {
     e.preventDefault();
     this.value = this.targetValue(e);
-    this.$$fire('valueChange', {detail: {name: this.name, value: this.value, selector: this.selector}});
+    EventUtils.dispatch(this, 'valueChange', {detail: {name: this.name, value: this.value, selector: this.selector}});
   }
 
   protected renderLabel(): void {
