@@ -57,28 +57,38 @@ export class ESLSettings extends ESLBaseElement {
     this.playground.passMarkup(component.innerHTML, ESLSettings.is);
   }
 
-  protected disconnectedCallback() {
+  protected disconnectedCallback(): void {
     this.unbindEvents();
     super.disconnectedCallback();
   }
 
-  private get settingsTags(): any[] {
+  private get attrSettingsTags(): any[] {
     return [
       ...this.getElementsByTagName(ESLCheckSetting.is),
       ...this.getElementsByTagName(ESLListSetting.is),
       ...this.getElementsByTagName(ESLTextSetting.is),
-      ...this.getElementsByTagName(ESLClassSetting.is)
     ];
   }
 
+  private get classSettingsTags(): any[] {
+    return [...this.getElementsByTagName(ESLClassSetting.is)];
+  }
+
   @bind
-  public parseCode(markup: string, source: string) {
+  public parseCode(markup: string, source: string): void {
     if (source === ESLSettings.is) return;
 
     const component = new DOMParser().parseFromString(markup, 'text/html').body;
-    for (let settingTag of this.settingsTags) {
+
+    this.setAttrSettings(component);
+    this.setClassSettings(component);
+  }
+
+  protected setAttrSettings(component: HTMLElement): void {
+    for (let settingTag of this.attrSettingsTags) {
       settingTag = settingTag as typeof ESLSetting;
       const {name, selector} = settingTag;
+
       if (!selector || !name) continue;
 
       const attrValues = Array.prototype.map.call(component.querySelectorAll(selector),
@@ -95,8 +105,29 @@ export class ESLSettings extends ESLBaseElement {
     }
   }
 
-  private unbindEvents() {
+  protected setClassSettings(component: HTMLElement): void {
+    for (let classSetting of this.classSettingsTags) {
+      classSetting = classSetting as ESLClassSetting;
+      const {selector, values} = classSetting;
+
+      const classLists: DOMTokenList[] = Array.prototype.map.call(component.querySelectorAll(selector),
+        (tag: HTMLElement) => tag.classList);
+      if (!classLists.length) continue;
+
+      const item = values.find((val: string) => classLists[0].contains(val));
+
+      if (classLists.length === 1) {
+        item ? (classSetting.value = item) : (classSetting.value = 'null');
+      } else {
+        classLists.every((classList: DOMTokenList) => classList.contains(item)) ?
+          classSetting.value = item : classSetting.value = 'null';
+      }
+    }
+  }
+
+  private unbindEvents(): void {
     this.removeEventListener('valueChange', this._onSettingsChanged);
+    this.removeEventListener('classChange', this._onClassChange);
     this.playground.unsubscribe(this.parseCode);
   }
 }

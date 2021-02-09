@@ -7,8 +7,12 @@ export class ESLListSetting extends ESLSetting {
 
   @attr() public value: string;
 
-  protected get target(): HTMLElement {
+  protected get target(): HTMLSelectElement {
     return this.select;
+  }
+
+  protected get values(): string[] {
+    return Array.prototype.map.call(this.target.options, (opt: HTMLOptionElement) => opt.value);
   }
 
   protected targetValue(e: Event): string {
