@@ -36,6 +36,7 @@ export class ESLEditor extends ESLBaseElement {
     });
 
     this.editor.session.setWrapLimitRange(120, 120);
+    this.editor.$blockScrolling = Infinity;
   }
 
   protected onChange = debounce(() => {
