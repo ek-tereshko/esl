@@ -2,6 +2,7 @@ import * as ace from 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/html';
 import js_beautify from 'js-beautify';
+import {config} from './editor-config';
 
 import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
@@ -23,20 +24,14 @@ export class ESLEditor extends ESLBaseElement {
     }
 
     this.editor = ace.edit(this);
-    this.setEditorOptions();
+    this.initEditorOptions();
+
+    this.editor.$blockScrolling = Infinity;
     this.editor.on('change', this.onChange);
   }
 
-  protected setEditorOptions(): void {
-    this.editor.setOptions({
-      theme: 'ace/theme/chrome',
-      mode: 'ace/mode/html',
-      printMarginColumn: -1,
-      wrap: true,
-    });
-
-    this.editor.session.setWrapLimitRange(120, 120);
-    this.editor.$blockScrolling = Infinity;
+  protected initEditorOptions(): void {
+    this.editor.setOptions(config);
   }
 
   protected onChange = debounce(() => {
