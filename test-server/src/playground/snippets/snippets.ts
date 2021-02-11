@@ -2,7 +2,6 @@ import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLSnippet} from './snippet';
 import {ESLPlayground} from '../core/playground';
-import {TraversingQuery} from '../../../../src/modules/esl-traversing-query/core';
 
 export class ESLSnippets extends ESLBaseElement {
   public static is = 'esl-snippets';
@@ -21,7 +20,7 @@ export class ESLSnippets extends ESLBaseElement {
   protected connectedCallback() {
     super.connectedCallback();
     this.addEventListener('click', this.onClick);
-    this.playground = TraversingQuery.first(`::parent(${ESLPlayground.is})`, this) as ESLPlayground;
+    this.playground = this.closest(`${ESLPlayground.is}`) as ESLPlayground;
 
     if (!this.activeSnippet) {
       this.activeSnippet = this.querySelectorAll(ESLSnippet.is)[0] as HTMLElement;
