@@ -6,6 +6,7 @@ import {ESLSetting} from './setting/setting';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 import {ESLPlayground} from '../core/playground';
+import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
 export class ESLSettings extends ESLBaseElement {
   public static is = 'esl-settings';
@@ -14,15 +15,13 @@ export class ESLSettings extends ESLBaseElement {
   protected connectedCallback() {
     super.connectedCallback();
     this.playground = this.closest(`${ESLPlayground.is}`) as ESLPlayground;
-    if (this.playground) {
-      this.playground.subscribe(this.parseCode);
-    }
     this.bindEvents();
   }
 
   protected bindEvents() {
     this.addEventListener('valueChange', this._onSettingsChanged);
     this.addEventListener('classChange', this._onClassChange);
+    this.playground && this.playground.addEventListener('state:change', this.parseCode);
   }
 
   private _onClassChange(e: any) {
@@ -38,7 +37,7 @@ export class ESLSettings extends ESLBaseElement {
       tag.classList.add(value);
     });
 
-    this.playground.passMarkup(component.innerHTML, ESLSettings.is);
+    EventUtils.dispatch(this, 'request:change', {detail: {source: ESLSettings.is, markup: component.innerHTML}});
   }
 
   private _onSettingsChanged(e: any) {
@@ -54,7 +53,8 @@ export class ESLSettings extends ESLBaseElement {
     } else {
       value ? tags.forEach(tag => tag.setAttribute(name, '')) : tags.forEach(tag => tag.removeAttribute(name));
     }
-    this.playground.passMarkup(component.innerHTML, ESLSettings.is);
+    EventUtils.dispatch(this, 'request:change', {detail: {source: ESLSettings.is, markup: component.innerHTML}});
+
   }
 
   protected disconnectedCallback(): void {
@@ -75,7 +75,8 @@ export class ESLSettings extends ESLBaseElement {
   }
 
   @bind
-  public parseCode(markup: string, source: string): void {
+  public parseCode(e: CustomEvent): void {
+    const {markup, source} = e.detail;
     if (source === ESLSettings.is) return;
 
     const component = new DOMParser().parseFromString(markup, 'text/html').body;
@@ -128,7 +129,7 @@ export class ESLSettings extends ESLBaseElement {
   private unbindEvents(): void {
     this.removeEventListener('valueChange', this._onSettingsChanged);
     this.removeEventListener('classChange', this._onClassChange);
-    this.playground.unsubscribe(this.parseCode);
+    this.playground && this.playground.removeEventListener('state:change', this.parseCode);
   }
 }
 

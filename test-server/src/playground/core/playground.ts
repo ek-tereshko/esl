@@ -1,29 +1,28 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {PlaygroundObservable} from '../utils/observable';
+import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
 export class ESLPlayground extends ESLBaseElement {
   public static is = 'esl-playground';
   private _state: string;
   protected stateObservable = new PlaygroundObservable();
 
-  public get state(){
+  public get state() {
     return this._state;
   }
-  /**
-   * @param markup
-   * @param source: name of the tag from which changes were received
-   */
-  public passMarkup(markup: string, source: string): void {
-    this._state = markup;
-    this.stateObservable.updateMarkup(markup, source);
+
+  protected connectedCallback() {
+    super.connectedCallback();
+    this.addEventListener('request:change', this._onStateChange);
   }
 
-  public subscribe(callback: (markup: string, source: string) => void): void {
-    this.stateObservable.addListener(callback);
+  private _onStateChange(e: CustomEvent) {
+    this._state = e.detail.markup;
+    EventUtils.dispatch(this, 'state:change', {detail: e.detail});
   }
 
-  public unsubscribe(callback: (markup: string, source: string) => void): void {
-    this.stateObservable.removeListener(callback);
+  protected disconnectedCallback() {
+    this.removeEventListener('request:change', this._onStateChange);
   }
 }
 

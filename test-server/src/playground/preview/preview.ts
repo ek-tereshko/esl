@@ -10,12 +10,13 @@ export class ESLPreview extends ESLBaseElement {
     super.connectedCallback();
     this.playground = this.closest(`${ESLPlayground.is}`) as ESLPlayground;
     if (this.playground) {
-      this.playground.subscribe(this.setMarkup);
+      this.playground.addEventListener('state:change', this.setMarkup);
     }
   }
 
   @bind
-  protected setMarkup(markup: string, source: string): void {
+  protected setMarkup(e: CustomEvent): void {
+    const {markup, source} = e.detail;
     if (source !== ESLPreview.is) {
       this.innerHTML = markup;
     }
@@ -23,7 +24,7 @@ export class ESLPreview extends ESLBaseElement {
 
   protected disconnectedCallback() {
     super.disconnectedCallback();
-    this.playground && this.playground.unsubscribe(this.setMarkup);
+    this.playground && this.playground.removeEventListener('state:change', this.setMarkup);
   }
 }
 

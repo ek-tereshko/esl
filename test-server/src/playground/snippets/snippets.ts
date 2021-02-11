@@ -2,6 +2,7 @@ import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLSnippet} from './snippet';
 import {ESLPlayground} from '../core/playground';
+import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
 export class ESLSnippets extends ESLBaseElement {
   public static is = 'esl-snippets';
@@ -31,7 +32,7 @@ export class ESLSnippets extends ESLBaseElement {
   protected sendMarkUp(): void {
     const tmpl = this.activeSnippet?.getElementsByTagName('template')[0];
     if (tmpl && this.playground) {
-      this.playground.passMarkup(tmpl.innerHTML, ESLSnippets.is);
+      EventUtils.dispatch(this, 'request:change', {detail: {source: ESLSnippets.is, markup: tmpl.innerHTML}});
     }
   }
 

@@ -8,6 +8,7 @@ import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLPlayground} from '../core/playground';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
+import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
 export class ESLEditor extends ESLBaseElement {
   public static is = 'esl-editor';
@@ -19,7 +20,7 @@ export class ESLEditor extends ESLBaseElement {
     super.connectedCallback();
     this.playground = this.closest(`${ESLPlayground.is}`) as ESLPlayground;
     if (this.playground) {
-      this.playground.subscribe(this.setMarkup);
+      this.playground.addEventListener('state:change', this.setMarkup);
     }
 
     this.editor = ace.edit(this);
@@ -34,12 +35,13 @@ export class ESLEditor extends ESLBaseElement {
   }
 
   protected onChange = debounce(() => {
-    this.triggerChanges && this.playground.passMarkup(this.editor.getValue(), ESLEditor.is);
+    this.triggerChanges && EventUtils.dispatch(this, 'request:change', {detail: {source: ESLEditor.is, markup: this.editor.getValue()}});
     this.triggerChanges = true;
   }, 1000);
 
   @bind
-  protected setMarkup(markup: string, source: string): void {
+  protected setMarkup(e: CustomEvent): void {
+    const {markup, source} = e.detail;
     if (source !== ESLEditor.is) {
       this.triggerChanges = false;
       this.editor.setValue(js_beautify.html(markup), -1);
@@ -49,7 +51,7 @@ export class ESLEditor extends ESLBaseElement {
   protected disconnectedCallback() {
     super.disconnectedCallback();
     this.editor.removeListener('change', this.onChange);
-    this.playground && this.playground.unsubscribe(this.setMarkup);
+    this.playground && this.playground.removeEventListener('state:change', this.setMarkup);
   }
 }
 
