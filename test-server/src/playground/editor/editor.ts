@@ -2,7 +2,7 @@ import * as ace from 'brace';
 import 'brace/theme/chrome';
 import 'brace/mode/html';
 import js_beautify from 'js-beautify';
-import {config} from './editor-config';
+import {CONFIG} from './config';
 
 import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
@@ -31,7 +31,7 @@ export class ESLEditor extends ESLBaseElement {
   }
 
   protected initEditorOptions(): void {
-    this.editor.setOptions(config);
+    this.editor.setOptions(CONFIG);
   }
 
   protected onChange = debounce(() => {
