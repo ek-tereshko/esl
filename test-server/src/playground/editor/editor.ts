@@ -53,4 +53,3 @@ export class ESLEditor extends ESLBaseElement {
   }
 }
 
-ESLEditor.register();

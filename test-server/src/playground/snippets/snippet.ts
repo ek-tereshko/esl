@@ -10,4 +10,3 @@ export class ESLSnippet extends ESLBaseElement {
   }
 }
 
-ESLSnippet.register();

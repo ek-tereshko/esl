@@ -44,4 +44,3 @@ export class ESLListSetting extends ESLSetting {
   }
 }
 
-ESLListSetting.register();

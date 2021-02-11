@@ -34,4 +34,3 @@ export class ESLCheckSetting extends ESLSetting {
   }
 }
 
-ESLCheckSetting.register();

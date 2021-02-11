@@ -12,7 +12,7 @@ import './common/test-media-source';
 // With Namespace
 import '../../src/modules/lib';
 
-import './playground/playground';
+import './playground/registration';
 
 import {
   ESLImage,

@@ -47,4 +47,3 @@ export class ESLSnippets extends ESLBaseElement {
   }
 }
 
-customElements.whenDefined(ESLSnippet.is).then(() => ESLSnippets.register());

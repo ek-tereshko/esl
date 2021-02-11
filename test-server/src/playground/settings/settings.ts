@@ -132,4 +132,3 @@ export class ESLSettings extends ESLBaseElement {
   }
 }
 
-ESLSettings.register();

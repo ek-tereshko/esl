@@ -27,4 +27,3 @@ export class ESLPreview extends ESLBaseElement {
   }
 }
 
-ESLPreview.register();

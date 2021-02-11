@@ -34,4 +34,3 @@ export class ESLTextSetting extends ESLSetting {
   }
 }
 
-ESLTextSetting.register();
