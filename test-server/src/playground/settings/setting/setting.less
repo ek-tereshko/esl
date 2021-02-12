@@ -1,4 +1,17 @@
-@import "src/playground/settings/setting/check-setting/check-setting";
-@import "src/playground/settings/setting/text-setting/text-setting";
-@import "./list-setting/list-setting";
-@import "src/playground/settings/setting/class-setting/class-setting";
+esl-class-setting, esl-check-setting, esl-list-setting, esl-text-setting  {
+  display: block;
+  margin-top: 10px;
+}
+
+esl-class-setting > select, esl-list-setting > select, esl-text-setting > input {
+  margin-top: -10px;
+  width: 90%;
+}
+
+esl-check-setting > input {
+  margin-left: 5px;
+}
+
+esl-list-item {
+  display: none;
+}

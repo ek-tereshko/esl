@@ -4,8 +4,33 @@ containerCls: container
 title: ESL Media Component
 ---
 {{##content:
-<esl-playground class="playground">
+<script>
+  function onChange(target, attr) {
+    const value = target.getAttribute(attr);
+    const playground = document.querySelector('esl-playground');
 
+    if (value) {
+      playground.setAttribute(attr, value);
+    }
+  }
+</script>
+
+<esl-playground>
+  <div class="playground-modes">
+    <span class="section-name">Modes:</span>
+
+    <div class="mode">
+      <button class="mode-item" mode="vertical" onclick="onChange(this, 'mode')">vertical</button>
+      <button class="mode-item" mode="horizontal" onclick="onChange(this, 'mode')">horizontal</button>
+    </div>
+
+    <div class="mode">
+      <button class="mode-item" theme="light" onclick="onChange(this, 'theme')">light</button>
+      <button class="mode-item" theme="dark" onclick="onChange(this, 'theme')">dark</button>
+    </div>
+  </div>
+
+  <div class="playground-content">
     <div class="snippets-section">
       {{= layout.snippets || 'No snippets.' }}
     </div>
@@ -13,6 +38,7 @@ title: ESL Media Component
     <div class="sections-wrapper">
 
       <div class="{{= layout.settings ? 'preview-settings' : ''}}">
+
         <div class="{{= layout.settings ? 'preview-wrapper' : '' }}">
           <span class="section-name">Preview</span>
           <esl-preview class="preview-section"></esl-preview>
@@ -33,6 +59,7 @@ title: ESL Media Component
         <esl-editor class="editor-section"></esl-editor>
       </div>
     </div>
+  </div>
 
 </esl-playground>
 
