@@ -38,7 +38,12 @@ export class ESLSnippets extends ESLBaseElement {
 
   @bind
   protected onClick(event: Event) {
-    this.activeSnippet = event.target as HTMLElement;
+    const snippet = event.target as HTMLElement;
+    if(!snippet.querySelector('esl-snippet')) {
+      this.activeSnippet = snippet;
+    } else {
+      this.activeSnippet = snippet.querySelector('esl-snippet');
+    }
     this.sendMarkUp();
   }
 
