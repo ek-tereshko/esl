@@ -7,7 +7,7 @@ title: ESL Media Component
 <script>
   function onChange(target, attr) {
     const value = target.getAttribute(attr);
-    const playground = document.querySelector('uip-playground');
+    const playground = document.querySelector('uip-root');
 
     if (value) {
       playground.setAttribute(attr, value);
@@ -16,8 +16,8 @@ title: ESL Media Component
 </script>
 
 <uip-root>
-  <div class="playground-modes">
-    <span class="section-name">Modes:</span>
+  <div class="uip-options">
+    <span class="section-name">Options:</span>
 
     <div class="mode">
       <button class="mode-item" mode="vertical" onclick="onChange(this, 'mode')">vertical</button>
@@ -30,7 +30,7 @@ title: ESL Media Component
     </div>
   </div>
 
-  <div class="playground-content">
+  <div class="uip-content">
     <div class="snippets-section">
       {{= layout.snippets || 'No snippets.' }}
     </div>
