@@ -11,5 +11,5 @@ ESLEditor - custom element, editor for changing current markup.
 ---
 ### Example:
 ```html
-<esl-editor></esl-editor>
+<uip-editor></uip-editor>
 ```

@@ -1,10 +1,10 @@
 import {bind} from '../../../../../../src/modules/esl-utils/decorators/bind';
 import {EventUtils} from '../../../../../../src/modules/esl-utils/dom/events';
 import {attr} from '../../../../../../src/modules/esl-base-element/decorators/attr';
-import {ESLSetting} from '../setting';
+import {UIPSetting} from '../setting';
 
-export class ESLClassSetting extends ESLSetting {
-  public static is = 'esl-class-setting';
+export class UIPClassSetting extends UIPSetting {
+  public static is = 'uip-class-setting';
   protected select: HTMLSelectElement;
 
   @attr() public value: string;
@@ -37,7 +37,7 @@ export class ESLClassSetting extends ESLSetting {
   }
 
   protected createOptions(): void {
-    this.querySelectorAll('esl-list-item').forEach(item => {
+    this.querySelectorAll('uip-list-item').forEach(item => {
       if (item.textContent) {
         const value = item.getAttribute('value');
         this.select.add(new Option(item.textContent, value ? value : item.textContent));

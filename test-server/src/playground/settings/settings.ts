@@ -1,20 +1,20 @@
-import {ESLCheckSetting} from './setting/check-setting/check-setting';
-import {ESLListSetting} from './setting/list-setting/list-setting';
-import {ESLTextSetting} from './setting/text-setting/text-setting';
-import {ESLClassSetting} from './setting/class-setting/class-setting';
-import {ESLSetting} from './setting/setting';
+import {UIPCheckSetting} from './setting/check-setting/check-setting';
+import {UIPListSetting} from './setting/list-setting/list-setting';
+import {UIPTextSetting} from './setting/text-setting/text-setting';
+import {UIPClassSetting} from './setting/class-setting/class-setting';
+import {UIPSetting} from './setting/setting';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
-import {ESLPlayground} from '../core/playground';
+import {UIPRoot} from '../core/playground';
 import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
-export class ESLSettings extends ESLBaseElement {
-  public static is = 'esl-settings';
-  protected playground: ESLPlayground;
+export class UIPSettings extends ESLBaseElement {
+  public static is = 'uip-settings';
+  protected playground: UIPRoot;
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.playground = this.closest(`${ESLPlayground.is}`) as ESLPlayground;
+    this.playground = this.closest(`${UIPRoot.is}`) as UIPRoot;
     this.bindEvents();
   }
 
@@ -37,7 +37,7 @@ export class ESLSettings extends ESLBaseElement {
       tag.classList.add(value);
     });
 
-    EventUtils.dispatch(this, 'request:change', {detail: {source: ESLSettings.is, markup: component.innerHTML}});
+    EventUtils.dispatch(this, 'request:change', {detail: {source: UIPSettings.is, markup: component.innerHTML}});
   }
 
   private _onSettingsChanged(e: any) {
@@ -53,7 +53,7 @@ export class ESLSettings extends ESLBaseElement {
     } else {
       value ? tags.forEach(tag => tag.setAttribute(name, '')) : tags.forEach(tag => tag.removeAttribute(name));
     }
-    EventUtils.dispatch(this, 'request:change', {detail: {source: ESLSettings.is, markup: component.innerHTML}});
+    EventUtils.dispatch(this, 'request:change', {detail: {source: UIPSettings.is, markup: component.innerHTML}});
 
   }
 
@@ -64,20 +64,20 @@ export class ESLSettings extends ESLBaseElement {
 
   private get attrSettingsTags(): any[] {
     return [
-      ...this.getElementsByTagName(ESLCheckSetting.is),
-      ...this.getElementsByTagName(ESLListSetting.is),
-      ...this.getElementsByTagName(ESLTextSetting.is),
+      ...this.getElementsByTagName(UIPCheckSetting.is),
+      ...this.getElementsByTagName(UIPListSetting.is),
+      ...this.getElementsByTagName(UIPTextSetting.is),
     ];
   }
 
   private get classSettingsTags(): any[] {
-    return [...this.getElementsByTagName(ESLClassSetting.is)];
+    return [...this.getElementsByTagName(UIPClassSetting.is)];
   }
 
   @bind
   public parseCode(e: CustomEvent): void {
     const {markup, source} = e.detail;
-    if (source === ESLSettings.is) return;
+    if (source === UIPSettings.is) return;
 
     const component = new DOMParser().parseFromString(markup, 'text/html').body;
 
@@ -87,7 +87,7 @@ export class ESLSettings extends ESLBaseElement {
 
   protected setAttrSettings(component: HTMLElement): void {
     for (let settingTag of this.attrSettingsTags) {
-      settingTag = settingTag as typeof ESLSetting;
+      settingTag = settingTag as typeof UIPSetting;
       const {name, selector} = settingTag;
 
       if (!selector || !name) continue;
@@ -108,7 +108,7 @@ export class ESLSettings extends ESLBaseElement {
 
   protected setClassSettings(component: HTMLElement): void {
     for (let classSetting of this.classSettingsTags) {
-      classSetting = classSetting as ESLClassSetting;
+      classSetting = classSetting as UIPClassSetting;
       const {selector, values} = classSetting;
 
       const classLists: DOMTokenList[] = Array.prototype.map.call(component.querySelectorAll(selector),

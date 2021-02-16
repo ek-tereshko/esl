@@ -5,7 +5,7 @@ import js_beautify from 'js-beautify';
 
 import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
-import {ESLPlayground} from '../core/playground';
+import {UIPRoot} from '../core/playground';
 import {ESLBaseElement, jsonAttr} from '../../../../src/modules/esl-base-element/core';
 import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
@@ -16,8 +16,8 @@ interface EditorConfig {
   wrap: number;
 }
 
-export class ESLEditor extends ESLBaseElement {
-  public static is = 'esl-editor';
+export class UIPEditor extends ESLBaseElement {
+  public static is = 'uip-editor';
   public static defaultOptions = {
     theme: 'ace/theme/chrome',
     mode: 'ace/mode/html',
@@ -28,11 +28,11 @@ export class ESLEditor extends ESLBaseElement {
   public editorConfig: EditorConfig;
 
   protected editor: ace.Editor;
-  protected playground: ESLPlayground;
+  protected playground: UIPRoot;
 
   protected connectedCallback(): void {
     super.connectedCallback();
-    this.playground = this.closest(`${ESLPlayground.is}`) as ESLPlayground;
+    this.playground = this.closest(`${UIPRoot.is}`) as UIPRoot;
 
     if (!this.playground) return;
 
@@ -52,7 +52,7 @@ export class ESLEditor extends ESLBaseElement {
   }
 
   protected get mergedEditorConfig() {
-    const type = (this.constructor as typeof ESLEditor);
+    const type = (this.constructor as typeof UIPEditor);
     return Object.assign({}, type.defaultOptions, this.editorConfig || {});
   }
 
@@ -61,13 +61,13 @@ export class ESLEditor extends ESLBaseElement {
   }
 
   protected onChange = debounce(() => {
-    EventUtils.dispatch(this, 'request:change', {detail: {source: ESLEditor.is, markup: this.editor.getValue()}});
+    EventUtils.dispatch(this, 'request:change', {detail: {source: UIPEditor.is, markup: this.editor.getValue()}});
   }, 1000);
 
   @bind
   protected setMarkup(e: CustomEvent): void {
     const {markup, source} = e.detail;
-    if (source !== ESLEditor.is) {
+    if (source !== UIPEditor.is) {
       this.setEditorValue(markup);
     }
   }

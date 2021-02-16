@@ -1,23 +1,23 @@
 import {
-  ESLCheckSetting,
-  ESLClassSetting,
-  ESLEditor,
-  ESLListSetting,
-  ESLPlayground,
-  ESLPreview,
-  ESLSettings,
-  ESLSnippet,
-  ESLSnippets,
-  ESLTextSetting
+  UIPCheckSetting,
+  UIPClassSetting,
+  UIPEditor,
+  UIPListSetting,
+  UIPRoot,
+  UIPPreview,
+  UIPSettings,
+  UIPSnippet,
+  UIPSnippets,
+  UIPTextSetting
 } from './playground';
 
-ESLPlayground.register();
-ESLEditor.register();
-ESLPreview.register();
-ESLSettings.register();
-ESLTextSetting.register();
-ESLListSetting.register();
-ESLClassSetting.register();
-ESLCheckSetting.register();
-ESLSnippet.register();
-ESLSnippets.register();
+UIPRoot.register();
+UIPEditor.register();
+UIPPreview.register();
+UIPSettings.register();
+UIPTextSetting.register();
+UIPListSetting.register();
+UIPClassSetting.register();
+UIPCheckSetting.register();
+UIPSnippet.register();
+UIPSnippets.register();

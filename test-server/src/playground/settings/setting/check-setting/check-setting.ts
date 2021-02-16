@@ -1,8 +1,8 @@
 import {boolAttr} from '../../../../../../src/modules/esl-base-element/core';
-import {ESLSetting} from '../setting';
+import {UIPSetting} from '../setting';
 
-export class ESLCheckSetting extends ESLSetting {
-  public static is = 'esl-check-setting';
+export class UIPCheckSetting extends UIPSetting {
+  public static is = 'uip-check-setting';
   @boolAttr() public value: boolean = false;
 
   protected input: HTMLInputElement;

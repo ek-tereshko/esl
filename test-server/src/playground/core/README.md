@@ -17,12 +17,12 @@ ESLPlayground - state storage.
 ### Example:
 
 ```html
-<esl-playground></esl-playground>
+<uip-root></uip-root>
 ```
 
 ```typescript
 import {ESLPlayground} from "./playground";
 
-const playground = document.getElementsByTagName('esl-playground')[0] as ESLPlayground;
+const playground = document.getElementsByTagName('uip-root')[0] as ESLPlayground;
 playground.subscribe(callback); // callback: (markup: string, source: string) => void
 ```

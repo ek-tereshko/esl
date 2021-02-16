@@ -7,7 +7,7 @@ title: ESL Media Component
 <script>
   function onChange(target, attr) {
     const value = target.getAttribute(attr);
-    const playground = document.querySelector('esl-playground');
+    const playground = document.querySelector('uip-playground');
 
     if (value) {
       playground.setAttribute(attr, value);
@@ -15,7 +15,7 @@ title: ESL Media Component
   }
 </script>
 
-<esl-playground>
+<uip-root>
   <div class="playground-modes">
     <span class="section-name">Modes:</span>
 
@@ -41,7 +41,7 @@ title: ESL Media Component
 
         <div class="{{= layout.settings ? 'preview-wrapper' : '' }}">
           <span class="section-name">Preview</span>
-          <esl-preview class="preview-section"></esl-preview>
+          <uip-preview class="preview-section"></uip-preview>
         </div>
 
         {{? layout.settings}}
@@ -56,11 +56,11 @@ title: ESL Media Component
 
       <div class="editor-wrapper">
         <span class="section-name">Editor</span>
-        <esl-editor class="editor-section" editor-config="{wrap: 70}"></esl-editor>
+        <uip-editor class="editor-section" editor-config="{wrap: 70}"></uip-editor>
       </div>
     </div>
   </div>
 
-</esl-playground>
+</uip-root>
 
 #}}

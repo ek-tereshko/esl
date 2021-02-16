@@ -1,8 +1,8 @@
 import {attr} from '../../../../../../src/modules/esl-base-element/core';
-import {ESLSetting} from '../setting';
+import {UIPSetting} from '../setting';
 
-export class ESLTextSetting extends ESLSetting {
-  public static is = 'esl-text-setting';
+export class UIPTextSetting extends UIPSetting {
+  public static is = 'uip-text-setting';
   @attr() public value: string;
 
   protected input: HTMLInputElement;

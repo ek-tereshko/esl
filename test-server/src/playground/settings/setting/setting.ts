@@ -2,7 +2,7 @@ import {ESLBaseElement, attr} from '../../../../../src/modules/esl-base-element/
 import {bind} from '../../../../../src/modules/esl-utils/decorators/bind';
 import {EventUtils} from '../../../../../src/modules/esl-utils/dom/events';
 
-export abstract class ESLSetting extends ESLBaseElement {
+export abstract class UIPSetting extends ESLBaseElement {
   @attr({readonly: true}) public name: string;
   @attr({readonly: true}) public selector: string;
   public value: string | boolean;

@@ -5,10 +5,10 @@ title: ESL Accordion <span class="badge badge-warning">Beta</span>
 ---
 
 {{##snippets:
-<esl-snippets>
+<uip-snippets>
   <ul class='snippets-list'>
     <li class='snippets-list-item'>
-      <esl-snippet name='Simple accordion'>
+      <uip-snippet name='Simple accordion'>
         <template>
           <div class="card">
             <esl-trigger class="card-header" target="::next">
@@ -43,10 +43,10 @@ title: ESL Accordion <span class="badge badge-warning">Beta</span>
             </esl-panel>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='Hover accordion'>
+      <uip-snippet name='Hover accordion'>
         <template>
           <div class="card">
             <esl-trigger class="card-header" target="::parent::find(.clps)" event="hover" hide-delay="250">
@@ -82,10 +82,10 @@ title: ESL Accordion <span class="badge badge-warning">Beta</span>
             </div>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
   </ul>
-</esl-snippets>
+</uip-snippets>
 <style>
   .card-header[active] {
     box-shadow: inset 0 0 6px rgba(0, 0, 0, .25);
@@ -112,20 +112,20 @@ title: ESL Accordion <span class="badge badge-warning">Beta</span>
     font-weight: bold;
   }
 </style>
-<esl-settings>
-  <esl-list-setting name="event" selector="esl-trigger">
-    <esl-list-item value="click">click</esl-list-item>
-    <esl-list-item value="hover">hover</esl-list-item>
-  </esl-list-setting>
-  <esl-text-setting name="style" selector="esl-trigger"></esl-text-setting>
-  <esl-text-setting name="style" selector="esl-panel"></esl-text-setting>
-  <esl-class-setting name="color-class" selector=".card">
-    <esl-list-item value="red-color">red</esl-list-item>
-    <esl-list-item value="green-color">green</esl-list-item>
-  </esl-class-setting>
-  <esl-class-setting name="font" selector=".card">
-    <esl-list-item value="italic">italic</esl-list-item>
-    <esl-list-item value="bold">bold</esl-list-item>
-  </esl-class-setting>
-</esl-settings>
+<uip-settings>
+  <uip-list-setting name="event" selector="esl-trigger">
+    <uip-list-item value="click">click</uip-list-item>
+    <uip-list-item value="hover">hover</uip-list-item>
+  </uip-list-setting>
+  <uip-text-setting name="style" selector="esl-trigger"></uip-text-setting>
+  <uip-text-setting name="style" selector="esl-panel"></uip-text-setting>
+  <uip-class-setting name="color-class" selector=".card">
+    <uip-list-item value="red-color">red</uip-list-item>
+    <uip-list-item value="green-color">green</uip-list-item>
+  </uip-class-setting>
+  <uip-class-setting name="font" selector=".card">
+    <uip-list-item value="italic">italic</uip-list-item>
+    <uip-list-item value="bold">bold</uip-list-item>
+  </uip-class-setting>
+</uip-settings>
 #}}

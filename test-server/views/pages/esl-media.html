@@ -5,10 +5,10 @@ title: ESL Media Component
 ---
 
 {{##snippets:
-<esl-snippets>
+<uip-snippets>
   <ul class='snippets-list'>
     <li class='snippets-list-item'>
-      <esl-snippet name='ESL Media HTML video'>
+      <uip-snippet name='ESL Media HTML video'>
         <template>
           <esl-media group="demo-media"
                      media-type="video"
@@ -20,10 +20,10 @@ title: ESL Media Component
                      controls>
           </esl-media>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='ESL Media YouTube video'>
+      <uip-snippet name='ESL Media YouTube video'>
         <template>
           <div class="img-container img-container-16-9 img-container-loaded">
             <esl-media group="demo-media"
@@ -37,10 +37,10 @@ title: ESL Media Component
             </esl-media>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='ESL Media Iframe video'>
+      <uip-snippet name='ESL Media Iframe video'>
         <template>
           <div class="img-container img-container-16-9 img-container-loaded">
             <esl-media media-type="iframe"
@@ -48,10 +48,10 @@ title: ESL Media Component
             </esl-media>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='Basic Audio Example'>
+      <uip-snippet name='Basic Audio Example'>
         <template>
           <esl-media group="demo-media"
                      controls
@@ -59,10 +59,10 @@ title: ESL Media Component
                      media-src="https://html5book.ru/examples/media/track.mp3">
           </esl-media>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='HTML video background'>
+      <uip-snippet name='HTML video background'>
         <template>
           <div class="demo-marquee" style="height: 400px">
             <esl-media class="bg-content esl-media-bg"
@@ -82,10 +82,10 @@ title: ESL Media Component
             </div>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='YouTube video background'>
+      <uip-snippet name='YouTube video background'>
         <template>
           <div class="demo-marquee" style="height: 400px">
             <esl-media class="bg-content esl-media-bg"
@@ -106,10 +106,10 @@ title: ESL Media Component
             </div>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name="Media with load conditions">
+      <uip-snippet name="Media with load conditions">
         <template>
           <div class="img-container img-container-16-9">
             <esl-media load-condition="@XS, @MOBILE"
@@ -120,36 +120,36 @@ title: ESL Media Component
             </esl-media>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
   </ul>
-</esl-snippets>
+</uip-snippets>
 
 #}}
 
 {{##settings:
-<esl-settings>
-  <esl-check-setting name="controls" selector="esl-media"></esl-check-setting>
-  <esl-check-setting name="muted" selector="esl-media"></esl-check-setting>
-  <esl-check-setting name="loop" selector="esl-media"></esl-check-setting>
-  <esl-check-setting name="disabled" selector="esl-media"></esl-check-setting>
-  <esl-text-setting name="media-id" selector="esl-media"></esl-text-setting>
-  <esl-text-setting name="media-type" selector="esl-media"></esl-text-setting>
-  <esl-text-setting name="media-src" selector="esl-media"></esl-text-setting>
-  <esl-text-setting name="aspect-ratio" selector="esl-media"></esl-text-setting>
-  <esl-text-setting name="load-condition" selector="esl-media"></esl-text-setting>
+<uip-settings>
+  <uip-check-setting name="controls" selector="esl-media"></uip-check-setting>
+  <uip-check-setting name="muted" selector="esl-media"></uip-check-setting>
+  <uip-check-setting name="loop" selector="esl-media"></uip-check-setting>
+  <uip-check-setting name="disabled" selector="esl-media"></uip-check-setting>
+  <uip-text-setting name="media-id" selector="esl-media"></uip-text-setting>
+  <uip-text-setting name="media-type" selector="esl-media"></uip-text-setting>
+  <uip-text-setting name="media-src" selector="esl-media"></uip-text-setting>
+  <uip-text-setting name="aspect-ratio" selector="esl-media"></uip-text-setting>
+  <uip-text-setting name="load-condition" selector="esl-media"></uip-text-setting>
 
-  <esl-check-setting name="playsinline" selector="esl-media"></esl-check-setting>
-  <esl-check-setting name="play-in-viewport" selector="esl-media"></esl-check-setting>
-  <esl-check-setting name="autoplay" selector="esl-media"></esl-check-setting>
-  <esl-check-setting name="autofocus" selector="esl-media"></esl-check-setting>
+  <uip-check-setting name="playsinline" selector="esl-media"></uip-check-setting>
+  <uip-check-setting name="play-in-viewport" selector="esl-media"></uip-check-setting>
+  <uip-check-setting name="autoplay" selector="esl-media"></uip-check-setting>
+  <uip-check-setting name="autofocus" selector="esl-media"></uip-check-setting>
 
-  <esl-list-setting name="fill-mode" selector="esl-media">
-    <esl-list-item value="auto">Auto mode</esl-list-item>
-    <esl-list-item value="cover">Cover mode</esl-list-item>
-    <esl-list-item value="inscribe">Inscribe mode</esl-list-item>
-  </esl-list-setting>
-</esl-settings>
+  <uip-list-setting name="fill-mode" selector="esl-media">
+    <uip-list-item value="auto">Auto mode</uip-list-item>
+    <uip-list-item value="cover">Cover mode</uip-list-item>
+    <uip-list-item value="inscribe">Inscribe mode</uip-list-item>
+  </uip-list-setting>
+</uip-settings>
 
-</esl-settings>
+</uip-settings>
 #}}

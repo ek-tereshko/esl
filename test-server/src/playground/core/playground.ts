@@ -2,8 +2,8 @@ import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {PlaygroundObservable} from '../utils/observable';
 import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
-export class ESLPlayground extends ESLBaseElement {
-  public static is = 'esl-playground';
+export class UIPRoot extends ESLBaseElement {
+  public static is = 'uip-root';
   private _state: string;
   protected stateObservable = new PlaygroundObservable();
 

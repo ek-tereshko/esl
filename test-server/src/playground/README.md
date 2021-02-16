@@ -18,10 +18,10 @@ the result.
 ---
 ### Example:
 ```html
-<esl-playground>
-  <esl-snippets></esl-snippets>
-  <esl-preview></esl-preview>
-  <esl-settings></esl-settings>
-  <esl-editor></esl-editor>
-</esl-playground>
+<uip-root>
+  <uip-snippets></uip-snippets>
+  <uip-preview></uip-preview>
+  <uip-settings></uip-settings>
+  <uip-editor></uip-editor>
+</uip-root>
 ```

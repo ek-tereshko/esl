@@ -5,20 +5,20 @@ title: ESL Image component
 ---
 
 {{##snippets:
-<esl-snippets>
+<uip-snippets>
   <ul class='snippets-list'>
     <li class='snippets-list-item'>
-      <esl-snippet name='Image Mode: save-ratio'>
+      <uip-snippet name='Image Mode: save-ratio'>
         <template>
           <esl-image mode="save-ratio"
                      data-alt="Alt Text Test"
                      data-src="img-3-carousel-9-6.jpg"
                      data-src-base="/images/"></esl-image>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='Image Mode: cover'>
+      <uip-snippet name='Image Mode: cover'>
         <template>
           <div class="container">
             <div class="img-container img-container-4-3">
@@ -34,10 +34,10 @@ title: ESL Image component
             width: 90%;
           }
         </style>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='Image Mode: cover (additional classes: vertical alignment)'>
+      <uip-snippet name='Image Mode: cover (additional classes: vertical alignment)'>
         <template>
           <div class="img-container m-auto" style="width: 400px; height: 200px; border: 1px solid gray;">
             <esl-image mode="cover"
@@ -46,10 +46,10 @@ title: ESL Image component
                        data-src-base="/images/"></esl-image>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='Image Mode: cover (additional classes: horizontal alignment)'>
+      <uip-snippet name='Image Mode: cover (additional classes: horizontal alignment)'>
         <template>
           <div class="img-container m-auto" style="width: 200px; height: 300px; border: 1px solid gray;">
             <esl-image mode="cover"
@@ -58,10 +58,10 @@ title: ESL Image component
                        data-src-base="/images/"></esl-image>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
     <li class='snippets-list-item'>
-      <esl-snippet name='Image Mode: cover (additional classes: inscribe)'>
+      <uip-snippet name='Image Mode: cover (additional classes: inscribe)'>
         <template>
           <div class="img-container m-auto" style="width: 300px; height: 150px; border: 1px solid gray;">
             <esl-image mode="cover" class="bg-inscribe"
@@ -70,23 +70,23 @@ title: ESL Image component
                        data-src-base="/images/"></esl-image>
           </div>
         </template>
-      </esl-snippet>
+      </uip-snippet>
     </li>
   </ul>
-</esl-snippets>
+</uip-snippets>
 #}}
 {{##settings:
-<esl-settings>
-  <esl-text-setting name="data-src" selector="esl-image"></esl-text-setting>
-  <esl-text-setting name="data-src-base" selector="esl-image"></esl-text-setting>
-  <esl-text-setting name="data-alt" selector="esl-image"></esl-text-setting>
-  <esl-list-setting name="class" selector="esl-image">
-    <esl-list-item value="bg-v-top">vertical top alignment</esl-list-item>
-    <esl-list-item value="bg-v-center">vertical center alignment</esl-list-item>
-    <esl-list-item value="bg-v-bottom">vertical bottom alignment</esl-list-item>
-    <esl-list-item value="bg-h-left">horizontal left alignment</esl-list-item>
-    <esl-list-item value="bg-h-center">horizontal center alignment</esl-list-item>
-    <esl-list-item value="bg-h-right">horizontal right alignment</esl-list-item>
-  </esl-list-setting>
-</esl-settings>
+<uip-settings>
+  <uip-text-setting name="data-src" selector="esl-image"></uip-text-setting>
+  <uip-text-setting name="data-src-base" selector="esl-image"></uip-text-setting>
+  <uip-text-setting name="data-alt" selector="esl-image"></uip-text-setting>
+  <uip-list-setting name="class" selector="esl-image">
+    <uip-list-item value="bg-v-top">vertical top alignment</uip-list-item>
+    <uip-list-item value="bg-v-center">vertical center alignment</uip-list-item>
+    <uip-list-item value="bg-v-bottom">vertical bottom alignment</uip-list-item>
+    <uip-list-item value="bg-h-left">horizontal left alignment</uip-list-item>
+    <uip-list-item value="bg-h-center">horizontal center alignment</uip-list-item>
+    <uip-list-item value="bg-h-right">horizontal right alignment</uip-list-item>
+  </uip-list-setting>
+</uip-settings>
 #}}

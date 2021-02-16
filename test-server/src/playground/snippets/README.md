@@ -17,8 +17,8 @@ ESLSnippets - custom element, container that stores snippets. ESLSnippet - conta
 ### Example:
 
 ```html
-<esl-snippets>
-  <esl-snippet name='Image Mode: cover' class='active'>
+<uip-snippets>
+  <uip-snippet name='Image Mode: cover' class='active'>
     <template>
       <div class="img-container img-container-4-3">
         <esl-image mode="cover"
@@ -27,6 +27,6 @@ ESLSnippets - custom element, container that stores snippets. ESLSnippet - conta
                    data-src-base="/images/"></esl-image>
       </div>
     </template>
-  </esl-snippet>
-</esl-snippets>
+  </uip-snippet>
+</uip-snippets>
 ```

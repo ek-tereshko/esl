@@ -1,8 +1,8 @@
 import {attr} from '../../../../../../src/modules/esl-base-element/core';
-import {ESLSetting} from '../setting';
+import {UIPSetting} from '../setting';
 
-export class ESLListSetting extends ESLSetting {
-  public static is = 'esl-list-setting';
+export class UIPListSetting extends UIPSetting {
+  public static is = 'uip-list-setting';
   protected select: HTMLSelectElement;
 
   @attr() public value: string;
@@ -35,7 +35,7 @@ export class ESLListSetting extends ESLSetting {
   }
 
   protected createOptions(): void {
-    this.querySelectorAll('esl-list-item').forEach(item => {
+    this.querySelectorAll('uip-list-item').forEach(item => {
       if (item.textContent) {
         const value = item.getAttribute('value');
         this.select.add(new Option(item.textContent, value ? value : item.textContent));

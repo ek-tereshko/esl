@@ -1,14 +1,14 @@
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
-import {ESLPlayground} from '../core/playground';
+import {UIPRoot} from '../core/playground';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 
-export class ESLPreview extends ESLBaseElement {
-  static is = 'esl-preview';
-  protected playground: ESLPlayground;
+export class UIPPreview extends ESLBaseElement {
+  static is = 'uip-preview';
+  protected playground: UIPRoot;
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.playground = this.closest(`${ESLPlayground.is}`) as ESLPlayground;
+    this.playground = this.closest(`${UIPRoot.is}`) as UIPRoot;
     if (this.playground) {
       this.playground.addEventListener('state:change', this.setMarkup);
     }
@@ -17,7 +17,7 @@ export class ESLPreview extends ESLBaseElement {
   @bind
   protected setMarkup(e: CustomEvent): void {
     const {markup, source} = e.detail;
-    if (source !== ESLPreview.is) {
+    if (source !== UIPPreview.is) {
       this.innerHTML = markup;
     }
   }

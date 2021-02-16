@@ -10,5 +10,5 @@ ESLPreview - custom element, that displays active element.
 ---
 ### Example:
 ```html
-<esl-preview></esl-preview>
+<uip-preview></uip-preview>
 ```
