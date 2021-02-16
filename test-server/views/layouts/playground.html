@@ -30,16 +30,15 @@ title: ESL Media Component
     </div>
   </div>
 
-  <div class="uip-content">
+  <div class="uip-content {{= !layout.settings && 'no-settings' }}">
     <div class="snippets-section">
       {{= layout.snippets || 'No snippets.' }}
     </div>
 
     <div class="sections-wrapper">
 
-      <div class="{{= layout.settings ? 'preview-settings' : ''}}">
-
-        <div class="{{= layout.settings ? 'preview-wrapper' : '' }}">
+      <div class="preview-settings">
+        <div class="preview-wrapper">
           <span class="section-name">Preview</span>
           <uip-preview class="preview-section"></uip-preview>
         </div>
