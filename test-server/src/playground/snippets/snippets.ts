@@ -1,7 +1,7 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {UIPSnippet} from './snippet';
-import {UIPRoot} from '../core/playground';
+import {UIPRoot} from '../core/root';
 import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
 export class UIPSnippets extends ESLBaseElement {

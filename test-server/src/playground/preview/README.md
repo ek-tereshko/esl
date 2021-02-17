@@ -1,6 +1,6 @@
 # ESL Preview
 
-ESLPreview - custom element, that displays active element.
+UIPPreview - custom element, that displays active element.
 
 ---
 ### Notes:

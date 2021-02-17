@@ -5,7 +5,7 @@ import js_beautify from 'js-beautify';
 
 import {debounce} from '../../../../src/modules/esl-utils/async/debounce';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
-import {UIPRoot} from '../core/playground';
+import {UIPRoot} from '../core/root';
 import {ESLBaseElement, jsonAttr} from '../../../../src/modules/esl-base-element/core';
 import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 

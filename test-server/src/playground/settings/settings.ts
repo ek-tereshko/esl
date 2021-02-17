@@ -5,7 +5,7 @@ import {UIPClassSetting} from './setting/class-setting/class-setting';
 import {UIPSetting} from './setting/setting';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
-import {UIPRoot} from '../core/playground';
+import {UIPRoot} from '../core/root';
 import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
 export class UIPSettings extends ESLBaseElement {

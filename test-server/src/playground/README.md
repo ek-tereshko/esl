@@ -1,6 +1,6 @@
 # ESL Playground
 
-ESLPlayground - custom element, that provides an ability of dynamic custom components' attributes change and monitoring
+UIPRoot - custom element, that provides an ability of dynamic custom components' attributes change and monitoring
 the result.
 
 ---

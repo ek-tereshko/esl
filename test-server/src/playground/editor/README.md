@@ -1,6 +1,6 @@
 # ESL Editor
 
-ESLEditor - custom element, editor for changing current markup.
+UIPEditor - custom element, editor for changing current markup.
 
 ---
 ### Notes:

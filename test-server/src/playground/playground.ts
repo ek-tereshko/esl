@@ -1,4 +1,4 @@
-export * from './core/playground';
+export * from './core/root';
 export * from './settings/settings';
 export * from './settings/setting/setting';
 export * from './settings/setting/check-setting/check-setting';

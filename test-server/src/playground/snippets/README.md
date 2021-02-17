@@ -1,16 +1,16 @@
 # ESL Snippets, ESL Snippet
 
-ESLSnippets - custom element, container that stores snippets. ESLSnippet - container that stores custom markup.
+UIPSnippets - custom element, container that stores snippets. UIPSnippet - container that stores custom markup.
 
 ---
 
 ### Notes:
 
-- ESLSnippets:
+- UIPSnippets:
   - Elements' markup should be placed in template tag.
   - An active element could be chosen by adding class 'active' to snippet, otherwise first snippet becomes 'active'.
-- ESLSnippet:
-  - ESLSnippet has required attribute 'name'.
+- UIPSnippet:
+  - UIPSnippet has required attribute 'name'.
 
 ---
 

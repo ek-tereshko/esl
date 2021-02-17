@@ -1,6 +1,6 @@
 # ESL Playground
 
-ESLPlayground - state storage.
+UIPRoot - state storage.
 
 ---
 
@@ -21,8 +21,8 @@ ESLPlayground - state storage.
 ```
 
 ```typescript
-import {ESLPlayground} from "./playground";
+import {UIPRoot} from "./root";
 
-const playground = document.getElementsByTagName('uip-root')[0] as ESLPlayground;
+const playground = document.getElementsByTagName('uip-root')[0] as UIPRoot;
 playground.subscribe(callback); // callback: (markup: string, source: string) => void
 ```

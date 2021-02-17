@@ -1,6 +1,6 @@
 # ESL Settings, ESL Setting
 
-UIPSettings - custom element that stores UIPSettings. ESLSetting - custom element that changes component's attribute in
+UIPSettings - custom element that stores UIPSettings. UIPSetting - custom element that changes component's attribute in
 the markup.
 
 ---
@@ -13,14 +13,14 @@ the markup.
   - Setting applies only to the first matching tag.
 
 
-- ESLSetting:
+- UIPSetting:
   - There are 3 types of settings:
     - input
     - list
     - checkbox
-  - ESLSetting has required attribute 'for' that determines to which tag setting should be applied.
-  - ESLSetting has required attribute 'name' that refers to attribute name which should be changed.
-  - ESLListSetting should contain <uip-list-item>. <uip-list-item> has setting name in text content, while value stores
+  - UIPSetting has required attribute 'for' that determines to which tag setting should be applied.
+  - UIPSetting has required attribute 'name' that refers to attribute name which should be changed.
+  - UIPListSetting should contain <uip-list-item>. <uip-list-item> has setting name in text content, while value stores
     in the attribute 'value'.
 
 ---

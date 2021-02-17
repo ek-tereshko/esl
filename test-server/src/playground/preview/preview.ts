@@ -1,5 +1,5 @@
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
-import {UIPRoot} from '../core/playground';
+import {UIPRoot} from '../core/root';
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core/esl-base-element';
 
 export class UIPPreview extends ESLBaseElement {
