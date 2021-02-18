@@ -6,125 +6,95 @@ title: ESL Media Component
 
 {{##snippets:
 <uip-snippets>
-  <ul class='snippets-list'>
-    <li class='snippets-list-item'>
-      <uip-snippet name='ESL Media HTML video'>
-        <template>
-          <esl-media group="demo-media"
-                     media-type="video"
-                     media-src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4"
-                     load-condition="(min-width: 500px)"
-                     load-cls-target="::parent(section)"
-                     load-cls-accepted="show-video"
-                     load-cls-declined="hide-video"
-                     controls>
-          </esl-media>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='ESL Media YouTube video'>
-        <template>
-          <div class="img-container img-container-16-9 img-container-loaded">
-            <esl-media group="demo-media"
-                       media-type="youtube"
-                       media-id="5LD-EoiTjuY"
-                       load-condition="(min-width: 500px)"
-                       load-cls-target="::parent(section)"
-                       load-cls-accepted="show-video"
-                       load-cls-declined="hide-video"
-                       controls>
-            </esl-media>
-          </div>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='ESL Media Iframe video'>
-        <template>
-          <div class="img-container img-container-16-9 img-container-loaded">
-            <esl-media media-type="iframe"
-                       media-src="https://player.vimeo.com/video/1084537">
-            </esl-media>
-          </div>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='Basic Audio Example'>
-        <template>
-          <esl-media group="demo-media"
-                     controls
-                     media-type="audio"
-                     media-src="https://html5book.ru/examples/media/track.mp3">
-          </esl-media>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='HTML video background'>
-        <template>
-          <div class="demo-marquee" style="height: 400px">
-            <esl-media class="bg-content esl-media-bg"
-                       media-type="video"
-                       media-src="https://pixabay.com/videos/download/video-5200_large.mp4"
-                       fill-mode="cover"
-                       play-in-viewport
-                       autoplay muted loop playsinline>
-            </esl-media>
-            <div class="demo-content contrast">
-              <h2>Background media</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut
-                aliquip ex ea commodo consequat.</p>
-            </div>
-          </div>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='YouTube video background'>
-        <template>
-          <div class="demo-marquee" style="height: 400px">
-            <esl-media class="bg-content esl-media-bg"
-                       media-type="youtube"
-                       media-id="inadorMBFEI"
-                       fill-mode="cover"
-                       aspect-ratio="4:3"
-                       play-in-viewport
-                       autoplay muted loop playsinline>
-            </esl-media>
-            <div class="demo-content contrast">
-              <h2>Background media</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                labore
-                et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut
-                aliquip ex ea commodo consequat.</p>
-            </div>
-          </div>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name="Media with load conditions">
-        <template>
-          <div class="img-container img-container-16-9">
-            <esl-media load-condition="@XS, @MOBILE"
-                       media-type="youtube"
-                       media-id="e1omOSkYltw"
-                       autoplay="true"
-                       muted loop>
-            </esl-media>
-          </div>
-        </template>
-      </uip-snippet>
-    </li>
-  </ul>
+  <template uip-snippet label='ESL Media HTML video'>
+    <esl-media group="demo-media"
+               media-type="video"
+               media-src="https://storage.googleapis.com/webfundamentals-assets/videos/chrome.mp4"
+               load-condition="(min-width: 500px)"
+               load-cls-target="::parent(section)"
+               load-cls-accepted="show-video"
+               load-cls-declined="hide-video"
+               controls>
+    </esl-media>
+  </template>
+  <template uip-snippet label='ESL Media YouTube video'>
+    <div class="img-container img-container-16-9 img-container-loaded">
+      <esl-media group="demo-media"
+                 media-type="youtube"
+                 media-id="5LD-EoiTjuY"
+                 load-condition="(min-width: 500px)"
+                 load-cls-target="::parent(section)"
+                 load-cls-accepted="show-video"
+                 load-cls-declined="hide-video"
+                 controls>
+      </esl-media>
+    </div>
+  </template>
+  <template uip-snippet label='ESL Media Iframe video'>
+    <div class="img-container img-container-16-9 img-container-loaded">
+      <esl-media media-type="iframe"
+                 media-src="https://player.vimeo.com/video/1084537">
+      </esl-media>
+    </div>
+  </template>
+  <template uip-snippet label='Basic Audio Example'>
+    <esl-media group="demo-media"
+               controls
+               media-type="audio"
+               media-src="https://html5book.ru/examples/media/track.mp3">
+    </esl-media>
+  </template>
+  <template uip-snippet label='HTML video background'>
+    <div class="demo-marquee" style="height: 400px">
+      <esl-media class="bg-content esl-media-bg"
+                 media-type="video"
+                 media-src="https://pixabay.com/videos/download/video-5200_large.mp4"
+                 fill-mode="cover"
+                 play-in-viewport
+                 autoplay muted loop playsinline>
+      </esl-media>
+      <div class="demo-content contrast">
+        <h2>Background media</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore
+          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut
+          aliquip ex ea commodo consequat.</p>
+      </div>
+    </div>
+  </template>
+  <template uip-snippet label='YouTube video background'>
+    <div class="demo-marquee" style="height: 400px">
+      <esl-media class="bg-content esl-media-bg"
+                 media-type="youtube"
+                 media-id="inadorMBFEI"
+                 fill-mode="cover"
+                 aspect-ratio="4:3"
+                 play-in-viewport
+                 autoplay muted loop playsinline>
+      </esl-media>
+      <div class="demo-content contrast">
+        <h2>Background media</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+          labore
+          et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+          nisi ut
+          aliquip ex ea commodo consequat.</p>
+      </div>
+    </div>
+  </template>
+  <template uip-snippet label="Media with load conditions">
+    <div class="img-container img-container-16-9">
+      <esl-media load-condition="@XS, @MOBILE"
+                 media-type="youtube"
+                 media-id="e1omOSkYltw"
+                 autoplay="true"
+                 muted loop>
+      </esl-media>
+    </div>
+  </template>
+  <ul class='snippets-list'></ul>
 </uip-snippets>
-
 #}}
 
 {{##settings:

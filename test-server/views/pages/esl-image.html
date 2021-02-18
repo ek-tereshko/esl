@@ -6,73 +6,52 @@ title: ESL Image component
 
 {{##snippets:
 <uip-snippets>
-  <ul class='snippets-list'>
-    <li class='snippets-list-item'>
-      <uip-snippet name='Image Mode: save-ratio'>
-        <template>
-          <esl-image mode="save-ratio"
-                     data-alt="Alt Text Test"
-                     data-src="img-3-carousel-9-6.jpg"
-                     data-src-base="/images/"></esl-image>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='Image Mode: cover'>
-        <template>
-          <div class="container">
-            <div class="img-container img-container-4-3">
-              <esl-image mode="cover"
-                         data-alt="Alt Text"
-                         data-src="img-5-carousel-9-6.jpg"
-                         data-src-base="/images/"></esl-image>
-            </div>
-          </div>
-        </template>
-        <style>
-          .container {
-            width: 90%;
-          }
-        </style>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='Image Mode: cover (additional classes: vertical alignment)'>
-        <template>
-          <div class="img-container m-auto" style="width: 400px; height: 200px; border: 1px solid gray;">
-            <esl-image mode="cover"
-                       data-alt="Alt Text"
-                       data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
-                       data-src-base="/images/"></esl-image>
-          </div>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='Image Mode: cover (additional classes: horizontal alignment)'>
-        <template>
-          <div class="img-container m-auto" style="width: 200px; height: 300px; border: 1px solid gray;">
-            <esl-image mode="cover"
-                       data-alt="Alt Text"
-                       data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
-                       data-src-base="/images/"></esl-image>
-          </div>
-        </template>
-      </uip-snippet>
-    </li>
-    <li class='snippets-list-item'>
-      <uip-snippet name='Image Mode: cover (additional classes: inscribe)'>
-        <template>
-          <div class="img-container m-auto" style="width: 300px; height: 150px; border: 1px solid gray;">
-            <esl-image mode="cover" class="bg-inscribe"
-                       data-alt="Alt Text"
-                       data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
-                       data-src-base="/images/"></esl-image>
-          </div>
-        </template>
-      </uip-snippet>
-    </li>
-  </ul>
+  <template uip-snippet label='Image Mode: save-ratio'>
+    <esl-image mode="save-ratio"
+               data-alt="Alt Text Test"
+               data-src="img-3-carousel-9-6.jpg"
+               data-src-base="/images/"></esl-image>
+  </template>
+  <template uip-snippet label='Image Mode: cover'>
+    <div class="container">
+      <div class="img-container img-container-4-3">
+        <esl-image mode="cover"
+                   data-alt="Alt Text"
+                   data-src="img-5-carousel-9-6.jpg"
+                   data-src-base="/images/"></esl-image>
+      </div>
+    </div>
+    <style>
+      .container {
+        width: 90%;
+      }
+    </style>
+  </template>
+  <template uip-snippet label='Image Mode: cover (additional classes: vertical alignment)'>
+    <div class="img-container m-auto" style="width: 400px; height: 200px; border: 1px solid gray;">
+      <esl-image mode="cover"
+                 data-alt="Alt Text"
+                 data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
+                 data-src-base="/images/"></esl-image>
+    </div>
+  </template>
+  <template uip-snippet label='Image Mode: cover (additional classes: horizontal alignment)'>
+    <div class="img-container m-auto" style="width: 200px; height: 300px; border: 1px solid gray;">
+      <esl-image mode="cover"
+                 data-alt="Alt Text"
+                 data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
+                 data-src-base="/images/"></esl-image>
+    </div>
+  </template>
+  <template uip-snippet label='Image Mode: cover (additional classes: inscribe)'>
+    <div class="img-container m-auto" style="width: 300px; height: 150px; border: 1px solid gray;">
+      <esl-image mode="cover" class="bg-inscribe"
+                 data-alt="Alt Text"
+                 data-src="img-1-carousel-9-6.jpg | @2x => img-1-carousel-9-6.jpg"
+                 data-src-base="/images/"></esl-image>
+    </div>
+  </template>
+  <ul class='snippets-list'></ul>
 </uip-snippets>
 #}}
 {{##settings:

@@ -1,55 +1,82 @@
 import {ESLBaseElement} from '../../../../src/modules/esl-base-element/core';
 import {bind} from '../../../../src/modules/esl-utils/decorators/bind';
-import {UIPSnippet} from './snippet';
 import {UIPRoot} from '../core/root';
 import {EventUtils} from '../../../../src/modules/esl-utils/dom/events';
 
 export class UIPSnippets extends ESLBaseElement {
   public static is = 'uip-snippets';
-  protected playground: UIPRoot;
+
   public static ACTIVE_CLASS = 'active';
 
-  public get activeSnippet(): HTMLElement | null {
-    return this.querySelector('.' + UIPSnippets.ACTIVE_CLASS);
+  protected _root: UIPRoot;
+
+  public get $items(): HTMLElement[] {
+    const items = this.querySelectorAll('.snippets-list-item');
+    return Array.from(items) as HTMLElement[];
   }
 
-  public set activeSnippet(snippet: HTMLElement | null) {
-    this.activeSnippet?.classList.remove(UIPSnippets.ACTIVE_CLASS);
+  public get $active(): HTMLElement | null {
+    return this.$items.find(item => item.classList.contains(UIPSnippets.ACTIVE_CLASS)) || null;
+  }
+
+  public set $active(snippet: HTMLElement | null) {
+    this.$active?.classList.remove(UIPSnippets.ACTIVE_CLASS);
     snippet?.classList.add(UIPSnippets.ACTIVE_CLASS);
   }
 
   protected connectedCallback() {
     super.connectedCallback();
-    this.addEventListener('click', this.onClick);
-    this.playground = this.closest(`${UIPRoot.is}`) as UIPRoot;
+    this.bindEvents();
 
-    if (!this.activeSnippet) {
-      this.activeSnippet = this.querySelectorAll(UIPSnippet.is)[0] as HTMLElement;
-    }
-    this.sendMarkUp();
-  }
+    this._root = this.closest(`${UIPRoot.is}`) as UIPRoot;
 
-  protected sendMarkUp(): void {
-    const tmpl = this.activeSnippet?.getElementsByTagName('template')[0];
-    if (tmpl && this.playground) {
-      EventUtils.dispatch(this, 'request:change', {detail: {source: UIPSnippets.is, markup: tmpl.innerHTML}});
-    }
-  }
-
-  @bind
-  protected onClick(event: Event) {
-    const snippet = event.target as HTMLElement;
-    if(!snippet.querySelector('uip-snippet')) {
-      this.activeSnippet = snippet;
-    } else {
-      this.activeSnippet = snippet.querySelector('uip-snippet');
-    }
+    this.render();
+    if (!this.$active) this.$active = this.$items[0];
     this.sendMarkUp();
   }
 
   protected disconnectedCallback() {
     super.disconnectedCallback();
-    this.removeEventListener('click', this.onClick);
+    this.unbindEvents();
+  }
+
+  protected bindEvents() {
+    this.addEventListener('click', this._onClick);
+  }
+
+  protected unbindEvents() {
+    this.removeEventListener('click', this._onClick);
+  }
+
+  protected render(): void {
+    const snippets = this.querySelectorAll('template[uip-snippet]');
+    if (!snippets.length) return;
+    const ul = this._root.querySelector('.snippets-list');
+
+    snippets.forEach(snippet => {
+      const li = document.createElement('li');
+      li.classList.add('snippets-list-item');
+      const label = snippet.getAttribute('label');
+      if (!label) return;
+      li.innerHTML = label;
+      li.appendChild(snippet);
+      ul?.appendChild(li);
+    });
+  }
+
+  protected sendMarkUp(): void {
+    const tmpl = this.$active?.querySelector('template[uip-snippet]');
+    if (!tmpl) return;
+    const detail = {source: UIPSnippets.is, markup: tmpl.innerHTML};
+    EventUtils.dispatch(this, 'request:change', {detail});
+  }
+
+  @bind
+  protected _onClick(event: Event) {
+    const target = event.target as HTMLElement;
+    if (!target.classList.contains('snippets-list-item')) return;
+    this.$active = target;
+    this.sendMarkUp();
   }
 }
 

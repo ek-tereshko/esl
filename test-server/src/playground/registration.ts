@@ -6,7 +6,6 @@ import {
   UIPRoot,
   UIPPreview,
   UIPSettings,
-  UIPSnippet,
   UIPSnippets,
   UIPTextSetting
 } from './playground';
@@ -19,5 +18,4 @@ UIPTextSetting.register();
 UIPListSetting.register();
 UIPClassSetting.register();
 UIPCheckSetting.register();
-UIPSnippet.register();
-UIPSnippets.register();
+customElements.whenDefined(UIPRoot.is).then(() => UIPSnippets.register());

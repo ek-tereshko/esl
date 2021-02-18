@@ -7,5 +7,4 @@ export * from './settings/setting/list-setting/list-setting';
 export * from './settings/setting/text-setting/text-setting';
 export * from './preview/preview';
 export * from './snippets/snippets';
-export * from './snippets/snippet';
 export * from './editor/editor';
