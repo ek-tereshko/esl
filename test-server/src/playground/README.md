@@ -1,19 +1,24 @@
-# ESL Playground
+# UIP Playground
 
-UIPRoot - custom element, that provides an ability of dynamic custom components' attributes change and monitoring
-the result.
+UIP Playground is a solution for presenting your custom component.
+
+With the help of *UIP* components we allow user to *'play'* with a component.
+You can choose from the variety of component's templates ([UIP Snippets](./snippets/README.md)),
+play with the component's settings ([UIP Settings](./settings/README.md))
+or even change its markup ([UIP Editor](./editor/README.md))!.
 
 ---
 ### Notes:
-- Every child element is not required.
+
+- Every element (except the *UIP Root*) isn't required, so you can combine them the way you want.
 
 ---
 ### Components:
-- ##### [ESL Playground](./core/README.md)
-- ##### [ESL Snippets](./snippets/README.md)
-- ##### [ESL Preview](./preview/README.md)
-- ##### [ESL Settings](./settings/README.md)
-- ##### [ESL Editor](./editor/README.md)
+- ##### [UIP Root](./core/README.md)
+- ##### [UIP Snippets](./snippets/README.md)
+- ##### [UIP Preview](./preview/README.md)
+- ##### [UIP Settings](./settings/README.md)
+- ##### [UIP Editor](./editor/README.md)
 
 ---
 ### Example:

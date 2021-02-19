@@ -1,6 +1,6 @@
-# ESL Settings, ESL Setting
+# UIP Settings, UIP Setting
 
-UIPSettings - custom element that stores UIPSettings. UIPSetting - custom element that changes component's attribute in
+UIPSettings - custom element which stores settings. UIPSetting - custom element (setting) that changes component's attribute in
 the markup.
 
 ---
@@ -8,9 +8,8 @@ the markup.
 ### Notes:
 
 - UIPSettings:
-  - This element subscribes to the 'state' of parent [ESL Playground](../core/README.md).
-  - UIPSettings parses markup and distributes changes among child settings components and vice versa.
-  - Setting applies only to the first matching tag.
+  - Listens for '*state:change*' event of parent [UIP Root](../core/README.md).
+  - Parses markup and distributes changes among child settings components and vice versa.
 
 
 - UIPSetting:
@@ -18,9 +17,10 @@ the markup.
     - input
     - list
     - checkbox
-  - UIPSetting has required attribute 'for' that determines to which tag setting should be applied.
+    - class
+  - UIPSetting has required attribute 'selector' that determines to which elements setting should be applied.
   - UIPSetting has required attribute 'name' that refers to attribute name which should be changed.
-  - UIPListSetting should contain <uip-list-item>. <uip-list-item> has setting name in text content, while value stores
+  - UIPListSetting, UIPClassSetting should contain <uip-list-item>. <uip-list-item> has setting name in text content, while value stores
     in the attribute 'value'.
 
 ---
@@ -39,5 +39,10 @@ the markup.
     <uip-list-item value="cover">Cover mode</uip-list-item>
     <uip-list-item value="inscribe">Inscribe mode</uip-list-item>
   </uip-list-setting>
+  <!--  Class setting-->
+  <uip-class-setting name="font" selector=".card">
+    <uip-list-item value="italic">italic</uip-list-item>
+    <uip-list-item value="bold">bold</uip-list-item>
+  </uip-class-setting>
 </uip-settings>
 ```

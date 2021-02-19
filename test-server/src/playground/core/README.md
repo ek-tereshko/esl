@@ -1,4 +1,4 @@
-# ESL Playground
+# UIP Root
 
 UIPRoot - state storage.
 
@@ -6,12 +6,9 @@ UIPRoot - state storage.
 
 ### Notes: 
 
-- Playground stores the 'state'. State - actual markup of the current component.
-
-- Playground implements the observable pattern. It means that you can subscribe/unsubscribe to current state changes.
-
-- Playground contains method for updating current state change.
-
+- **Root** stores the *state*, which is an actual markup of the current component.
+- Listens for '*request:change*' event that transfers state changes from UIP components to **Root**
+- Dispatches '*state:change*' event that delivers state changes to other UIP components
 ---
 
 ### Example:
@@ -21,8 +18,6 @@ UIPRoot - state storage.
 ```
 
 ```typescript
-import {UIPRoot} from "./root";
-
-const playground = document.getElementsByTagName('uip-root')[0] as UIPRoot;
-playground.subscribe(callback); // callback: (markup: string, source: string) => void
+const root = document.querySelector('uip-root');
+root.addEventListener('state:change', callback);
 ```
