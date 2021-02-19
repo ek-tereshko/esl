@@ -9,7 +9,7 @@ the markup.
 
 - UIPSettings:
   - Listens for '*state:change*' event of parent [UIP Root](../core/README.md).
-  - UIPSettings parses markup and distributes changes among child settings components and vice versa.
+  - Parses markup and distributes changes among child settings components and vice versa.
 
 
 - UIPSetting:
