@@ -59,6 +59,7 @@ export class UIPSnippets extends ESLBaseElement {
       const label = snippet.getAttribute('label');
       if (!label) return;
       li.innerHTML = label;
+      if (snippet.classList.contains(UIPSnippets.ACTIVE_CLASS)) this.$active = li;
       li.appendChild(snippet);
       ul?.appendChild(li);
     });
