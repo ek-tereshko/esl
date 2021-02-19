@@ -1,11 +1,11 @@
-# ESL Preview
+# UIP Preview
 
-UIPPreview - custom element, that displays active element.
+UIPPreview - custom element, that displays active component.
 
 ---
 ### Notes:
 
-- This element subscribes to the 'state' of parent [ESL Playground](../core/README.md).
+- Listens for '*state:change*' event of parent [UIP Root](../core/README.md).
 
 ---
 ### Example:
