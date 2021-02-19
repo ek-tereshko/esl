@@ -16,3 +16,8 @@ UIPRoot - state storage.
 ```html
 <uip-root></uip-root>
 ```
+
+```typescript
+const root = document.querySelector('uip-root');
+root.addEventListener('state:change', callback);
+```

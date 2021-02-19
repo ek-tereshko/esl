@@ -1,15 +1,15 @@
-# ESL Editor
+# UIP Editor
 
 UIPEditor - custom element, editor for changing current markup.
 
 ---
 ### Notes:
 
-- This element subscribes to the 'state' of parent [ESL Playground](../core/README.md).
+- Listens for '*state:change*' event of parent [UIP Root](../core/README.md).
 - Uses [ACE](https://ace.c9.io/) editor under the hood. 
-
+- Can be configured through **editor-config** attribute (see *EditorConfig* interface)
 ---
 ### Example:
 ```html
-<uip-editor></uip-editor>
+<uip-editor editor-config="{wrap: 70}"></uip-editor>
 ```
