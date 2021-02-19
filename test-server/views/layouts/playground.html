@@ -30,7 +30,7 @@ title: ESL Media Component
     </div>
   </div>
 
-  <div class="uip-content {{= !layout.settings && 'no-settings' }}">
+  <div class="uip-content {{= !layout.settings ? 'no-settings' : '' }}">
     <div class="snippets-section">
       {{= layout.snippets || 'No snippets.' }}
     </div>
