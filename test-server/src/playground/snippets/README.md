@@ -7,9 +7,9 @@ UIPSnippets - custom element, container that stores snippets (component's templa
 ### Notes:
 
 - Component's markup should be placed in **template** tags.
-- Templates should have *uip-snippet*, *label* attributes
+- Templates should have *uip-snippet*, *label* attributes.
 - An active element could be chosen by adding class **active** to template, otherwise first template becomes active.
-- Don't forget about <*ul class='snippets-list'*> at the end 
+- Don't forget about <*ul class='snippets-list'*> at the end, list items are dynamically rendered.
 ---
 
 ### Example:
