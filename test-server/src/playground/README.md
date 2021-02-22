@@ -1,6 +1,6 @@
-# UIP Playground
+# UIPlayground
 
-UIP Playground is a solution for presenting your custom component.
+UIPlayground is a solution for presenting your custom components.
 
 With the help of *UIP* components we allow user to *'play'* with a component.
 You can choose from the variety of component's templates ([UIP Snippets](./snippets/README.md)),
